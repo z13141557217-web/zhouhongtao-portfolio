@@ -33,8 +33,10 @@ const skillStack = [
     <div class="about-head">
       <span class="eyebrow">01 — About</span>
       <h2 class="about-title display display-md">
-        AI 产品经理之于一家公司，<br/>
-        是<em>大模型能力</em>与<em>真实业务</em>之间的<em>翻译者</em>。
+        AI 产品经理之于<br/>
+        <span class="nowrap">一家公司，</span><br/>
+        是<em class="nowrap">大模型能力</em>与<br/>
+        <em class="nowrap">真实业务</em>之间的<em class="nowrap">翻译者</em>。
       </h2>
     </div>
 
@@ -132,6 +134,11 @@ const skillStack = [
     margin-top: 24px;
     max-width: 22ch;
     font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.08;
+  }
+
+  .nowrap {
+    white-space: nowrap;
   }
 
   .about-title em {

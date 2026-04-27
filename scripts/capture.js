@@ -10,8 +10,14 @@ const port = Number(process.env.CAPTURE_DEBUG_PORT || 9223);
 
 const shots = [
   { name: 'desktop-hero.png', path: '/', width: 1440, height: 1000 },
+  { name: 'desktop-section-about.png', path: '/', selector: '#about', width: 1440, height: 1200 },
   { name: 'desktop-section-projects.png', path: '/', selector: '#projects', width: 1440, height: 1200 },
+  { name: 'desktop-section-methodology.png', path: '/', selector: '#methodology', width: 1440, height: 1200 },
+  { name: 'desktop-section-contact.png', path: '/', selector: '#contact', width: 1440, height: 1200 },
   { name: 'mobile-hero.png', path: '/', width: 390, height: 900, mobile: true },
+  { name: 'mobile-section-about.png', path: '/', selector: '#about', width: 390, height: 900, mobile: true },
+  { name: 'mobile-section-methodology.png', path: '/', selector: '#methodology', width: 390, height: 900, mobile: true },
+  { name: 'mobile-section-contact.png', path: '/', selector: '#contact', width: 390, height: 900, mobile: true },
   { name: 'desktop-full.png', path: '/', width: 1440, height: 1200, fullPage: true },
 ];
 
