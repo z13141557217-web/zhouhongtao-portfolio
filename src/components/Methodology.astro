@@ -1,0 +1,183 @@
+---
+// 方法论
+const principles = [
+  {
+    num: '01',
+    title: '判断需求是否值得用 AI 的三原则',
+    body: '高频、耗时、可标准化。主动排除"强主观判断"和"低频高价值但试错成本极高"的场景——前者幻觉风险大，后者 AI ROI 不划算。',
+    tags: ['场景判断', '需求评估'],
+  },
+  {
+    num: '02',
+    title: '幻觉控制的三层防御',
+    body: 'Prompt 层（强约束 + 引用要求）、产品层（依据来源可追溯 + 用户可校对）、评测层（一致性校验 + Badcase 回流）。最终是"用产品设计补算法短板"。',
+    tags: ['幻觉控制', '产品设计'],
+  },
+  {
+    num: '03',
+    title: 'Eval 体系的三维三方法三机制',
+    body: '三维度：任务完成度 / 准确性 / 格式规范性。三方法：规则判分 / LLM-as-Judge / 人工抽检。三机制：每轮迭代全量跑、Badcase 回流、版本回滚。',
+    tags: ['Eval 体系', '量化迭代'],
+  },
+  {
+    num: '04',
+    title: 'Multi-Agent vs 单 Prompt 的判断准则',
+    body: '看三件事：是否需要职责分离让 Eval 独立可优化？是否有跨轮上下文管理压力？单点失败是否可接受？任一为是，就上 Multi-Agent。',
+    tags: ['架构选型', 'Agent 设计'],
+  },
+  {
+    num: '05',
+    title: '量产可用性 > 离线最优精度',
+    body: '伊赛尔端侧 AI 让我把这个原则刻进了骨子里。Benchmark 不只看 Top-1 精度，还要看量化掉点、端侧延迟分布、功耗。算法最优≠产品最优。',
+    tags: ['模型选型', '工程权衡'],
+  },
+  {
+    num: '06',
+    title: '数据飞轮先于一切优化',
+    body: '在做 Prompt 调优、Few-shot 微调、模型升级之前，先建好"用户反馈一键标记 → Badcase 池 → 周度复盘 → 评测集回归"的数据闭环。这套闭环能让任何后续优化都有据可依。',
+    tags: ['数据飞轮', 'Badcase 闭环'],
+  },
+];
+---
+
+<section class="methodology" id="methodology">
+  <div class="container-narrow">
+    <div class="meth-head">
+      <span class="eyebrow">04 — Methodology</span>
+      <h2 class="display display-md meth-title">
+        我做 AI 产品的<em>六条工作原则</em>。
+      </h2>
+      <p class="body-text-lg muted">
+        这些不是抽象概念，是我在 4 年 AI 产品实践里反复验证、踩坑、迭代后沉淀下来的<strong class="ink-100">可操作准则</strong>。
+        面试中如果你想深聊任何一条，我都能给出对应项目的真实案例。
+      </p>
+    </div>
+
+    <div class="principles">
+      {principles.map((p) => (
+        <article class="principle">
+          <div class="prin-l">
+            <span class="prin-num">{p.num}</span>
+            <span class="prin-line"></span>
+          </div>
+          <div class="prin-r">
+            <h3 class="prin-title">{p.title}</h3>
+            <p class="prin-body">{p.body}</p>
+            <div class="prin-tags">
+              {p.tags.map(t => <span class="tag">{t}</span>)}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .meth-head {
+    margin-bottom: 80px;
+    text-align: center;
+  }
+
+  .meth-title {
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  .meth-title em {
+    font-style: italic;
+    color: var(--accent-cyan);
+    font-weight: 400;
+  }
+
+  .meth-head .eyebrow {
+    justify-content: center;
+  }
+
+  .meth-head p { margin: 0 auto; max-width: 60ch; }
+
+  .ink-100 { color: var(--ink-100); }
+
+  .principles {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .principle {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 32px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: flex-start;
+    transition: all 300ms;
+  }
+
+  .principle:first-child { padding-top: 0; }
+  .principle:last-child { border-bottom: 0; }
+  .principle:hover {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .prin-l {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .prin-num {
+    font-family: var(--f-display);
+    font-size: 56px;
+    font-style: italic;
+    line-height: 1;
+    background: var(--grad-cyan-violet);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.04em;
+  }
+
+  .prin-line {
+    width: 24px;
+    height: 1px;
+    background: var(--accent-cyan);
+    opacity: 0.5;
+  }
+
+  .prin-r {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .prin-title {
+    font-family: var(--f-body);
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--ink-100);
+    letter-spacing: -0.01em;
+  }
+
+  .prin-body {
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--ink-200);
+    max-width: 64ch;
+  }
+
+  .prin-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 640px) {
+    .principle { grid-template-columns: 1fr; gap: 16px; padding: 32px 0; }
+    .prin-num { font-size: 40px; }
+    .prin-line { display: none; }
+  }
+</style>

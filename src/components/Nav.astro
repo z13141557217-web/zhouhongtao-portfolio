@@ -1,0 +1,134 @@
+---
+// 顶部导航栏
+---
+
+<nav class="nav-root" id="nav-root">
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand">
+      <span class="brand-mark">Z</span>
+      <span class="brand-name">周鸿涛</span>
+      <span class="brand-sub">/ AI PM</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#about">关于</a>
+      <a href="#projects">项目</a>
+      <a href="#methodology">方法论</a>
+      <a href="#contact">联系</a>
+    </div>
+
+    <a href="#contact" class="btn btn-primary nav-cta">
+      <span>开始对话</span>
+      <span class="btn-arrow">→</span>
+    </a>
+  </div>
+</nav>
+
+<style>
+  .nav-root {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition: all 300ms;
+    padding: 16px 0;
+  }
+
+  .nav-root.scrolled {
+    background: rgba(10, 14, 26, 0.72);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 0;
+  }
+
+  .nav-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding-left: var(--container-pad);
+    padding-right: var(--container-pad);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--ink-100);
+  }
+
+  .brand-mark {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--grad-cyan-violet);
+    display: grid;
+    place-items: center;
+    font-family: var(--f-display);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--bg-deepest);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+  }
+
+  .brand-name {
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+  }
+
+  .brand-sub {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: var(--ink-500);
+    letter-spacing: 0.04em;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .nav-links a {
+    font-family: var(--f-body);
+    font-size: 14px;
+    color: var(--ink-400);
+    transition: color 200ms;
+    position: relative;
+  }
+
+  .nav-links a:hover {
+    color: var(--ink-100);
+  }
+
+  .nav-cta {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-cta { padding: 8px 14px; font-size: 12px; }
+    .brand-sub { display: none; }
+  }
+</style>
+
+<script>
+  // 滚动时显示玻璃态背景
+  const nav = document.getElementById('nav-root');
+  if (nav) {
+    const onScroll = () => {
+      if (window.scrollY > 32) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+</script>

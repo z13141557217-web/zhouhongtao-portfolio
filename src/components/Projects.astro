@@ -1,0 +1,469 @@
+---
+// 项目展示区
+const workProjects = [
+  {
+    id: 'tilta',
+    company: 'TILTA 科技',
+    period: '2025.09 — 2026.03',
+    role: 'AI 产品经理',
+    title: '基于 Multi-Agent 架构的企业级 IPD 智能工作流',
+    summary: '面向 400 人规模传统企业,搭建从需求澄清、规则校验、文档生成到立项辅助的完整 Agent 链路,推动 IPD 流程深度 AI 化。',
+    tags: ['Multi-Agent', '本地化 RAG', 'Eval 体系', '企业合规'],
+    metrics: [
+      { label: '首稿可用率', value: '40 → 70%+' },
+      { label: '新场景接入', value: '2 周' },
+      { label: '高优场景覆盖', value: '5 个' },
+    ],
+    accent: 'cyan',
+    featured: true,
+  },
+  {
+    id: 'isel',
+    company: '伊赛尔科技',
+    period: '2024.07 — 2025.09',
+    role: 'AI 产品经理',
+    title: 'AI 星野识别智能导星系统',
+    summary: '面向天文新手的端侧 AI 软硬一体产品。1TOPS 算力下完成 MobileNetV3-Small INT8 量化与板端验证,设计三级降级策略保障极端场景可用。',
+    tags: ['端侧 AI', '软硬一体', '模型量化', '降级策略'],
+    metrics: [
+      { label: '首次找星成功率', value: '92%+' },
+      { label: '上市单季营收', value: '+35%' },
+      { label: '量产时点', value: '按期' },
+    ],
+    accent: 'mint',
+    featured: true,
+  },
+  {
+    id: 'pdd-copilot',
+    company: '拼多多',
+    period: '2023.10 — 2024.06',
+    role: 'AI 策略产品经理',
+    title: 'LLM 驱动的发券运营 Copilot',
+    summary: '把发券核销、人群画像、异动归因等结构化数据 + 历史决策样本喂给 LLM,自动生成每日策略洞察报告,把策略迭代周期从周级压缩到天级。',
+    tags: ['LLM Copilot', '三级校验', '数据飞轮', 'Eval 回归'],
+    metrics: [
+      { label: '券核销率', value: '12 → 15%' },
+      { label: '综合 ROI', value: '1.5 → 1.8' },
+      { label: '历史回归集', value: '100+ 条' },
+    ],
+    accent: 'cyan',
+    featured: false,
+  },
+  {
+    id: 'pdd-aigc',
+    company: '拼多多',
+    period: '2023.03 — 2023.09',
+    role: 'AI 增长产品经理',
+    title: '拼团成交链路优化与 AIGC 裂变增长',
+    summary: '基于商品品类 × 人群画像 × 社交场景的三维 Prompt 模板,自动化生产分场景文案,沉淀 50+ 套素材库并建立效果淘汰机制。',
+    tags: ['AIGC', '三维 Prompt', 'A/B 测试', '素材淘汰'],
+    metrics: [
+      { label: '参团率提升', value: '+18%' },
+      { label: '素材准备时间', value: '−80%' },
+      { label: '文案模板', value: '50+ 套' },
+    ],
+    accent: 'violet',
+    featured: false,
+  },
+  {
+    id: 'pdd-strategy',
+    company: '拼多多',
+    period: '2022.03 — 2023.02',
+    role: '策略产品经理',
+    title: '基于 ROI 约束的差异化补贴决策系统',
+    summary: '构建多维用户分层模型,设计多档面额 A/B 测试与 ROI 评估模型,推动发券链路从人工经验配置升级为算法推荐引擎。',
+    tags: ['策略产品', '用户分层', 'ROI 模型', '算法推荐'],
+    metrics: [
+      { label: '券核销率', value: '12 → 13%' },
+      { label: '综合 ROI', value: '1.2 → 1.5' },
+      { label: '决策机制', value: '人工 → 算法' },
+    ],
+    accent: 'violet',
+    featured: false,
+  },
+];
+---
+
+<section class="projects" id="projects">
+  <div class="container">
+    <div class="projects-head">
+      <span class="eyebrow">02 — Selected Work</span>
+      <h2 class="display display-md projects-title">
+        从 <em>0-1</em> 到 <em>规模化</em>，<br/>
+        把 AI 装进真实业务的 5 段实践。
+      </h2>
+      <p class="body-text-lg muted projects-intro">
+        以下项目按时间倒序排列，覆盖企业 B 端 / 智能硬件 / C 端电商三类场景。
+        每个项目都包含可量化的业务成果，并可在面试中按"九段式"详细展开。
+      </p>
+    </div>
+
+    <!-- 重点项目 - 大卡片 -->
+    <div class="featured-projects">
+      {workProjects.filter(p => p.featured).map((p, idx) => (
+        <article class={`featured-card accent-${p.accent}`} id={p.id}>
+          <div class="featured-meta">
+            <span class="featured-num mono">{`P0${idx + 1}`}</span>
+            <div class="featured-period">
+              <span class="mono">{p.period}</span>
+              <span class="featured-co">{p.company} · {p.role}</span>
+            </div>
+          </div>
+
+          <h3 class="featured-title">{p.title}</h3>
+
+          <p class="featured-summary">{p.summary}</p>
+
+          <div class="featured-tags">
+            {p.tags.map(t => <span class="tag">{t}</span>)}
+          </div>
+
+          <div class="featured-metrics">
+            {p.metrics.map(m => (
+              <div class="metric">
+                <span class="stat-num metric-value">{m.value}</span>
+                <span class="metric-label mono">{m.label}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="featured-cta">
+            <span class="featured-cta-dot"></span>
+            <span>九段式 STAR 应答 · 面试中可详细展开</span>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- 次要项目 - 紧凑列表 -->
+    <div class="compact-section">
+      <h3 class="compact-head">
+        <span class="eyebrow">— 拼多多时期 · 策略产品演进史</span>
+      </h3>
+      <p class="muted compact-intro">
+        从纯策略产品（多维分层 + ROI 决策框架）→ AIGC 增长产品 → LLM Copilot，
+        我在拼多多完整经历了"经验决策 → 数据决策 → AI 决策"的进化路径。
+        这条主线也是我现在做 Multi-Agent 项目的方法论源头。
+      </p>
+
+      <div class="compact-grid">
+        {workProjects.filter(p => !p.featured).map((p, idx) => (
+          <article class={`compact-card accent-${p.accent}`} id={p.id}>
+            <div class="compact-period mono">{p.period}</div>
+            <h4 class="compact-title">{p.title}</h4>
+            <p class="compact-summary muted">{p.summary}</p>
+            <div class="compact-metrics">
+              {p.metrics.map(m => (
+                <div class="compact-metric">
+                  <span class="cm-value mono">{m.value}</span>
+                  <span class="cm-label">{m.label}</span>
+                </div>
+              ))}
+            </div>
+            <div class="compact-tags">
+              {p.tags.slice(0, 3).map(t => <span class="tag">{t}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects-head {
+    margin-bottom: 80px;
+  }
+
+  .projects-title {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    max-width: 22ch;
+  }
+
+  .projects-title em {
+    font-style: italic;
+    color: var(--accent-cyan);
+    font-weight: 400;
+  }
+
+  .projects-intro {
+    max-width: 60ch;
+  }
+
+  /* ==== 重点项目 ==== */
+  .featured-projects {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 120px;
+  }
+
+  .featured-card {
+    position: relative;
+    padding: clamp(32px, 5vw, 56px);
+    border: 1px solid var(--line);
+    border-radius: var(--r-xl);
+    background: linear-gradient(135deg, var(--bg-elev-1) 0%, var(--bg-elev-2) 100%);
+    overflow: hidden;
+    transition: all 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  /* 装饰条 */
+  .featured-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent-cyan);
+    opacity: 0.6;
+  }
+
+  .accent-mint::before { background: var(--accent-mint); }
+  .accent-violet::before { background: var(--accent-violet); }
+
+  /* 角落装饰 */
+  .featured-card::after {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-cyan-soft), transparent 70%);
+    pointer-events: none;
+    opacity: 0.4;
+    transition: opacity 400ms;
+  }
+
+  .accent-mint.featured-card::after {
+    background: radial-gradient(circle, var(--accent-mint-soft), transparent 70%);
+  }
+
+  .featured-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--line-accent);
+  }
+  .featured-card:hover::after { opacity: 0.7; }
+
+  .featured-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .featured-num {
+    font-size: 14px;
+    color: var(--accent-cyan);
+    letter-spacing: 0.1em;
+  }
+
+  .accent-mint .featured-num { color: var(--accent-mint); }
+  .accent-violet .featured-num { color: var(--accent-violet); }
+
+  .featured-period {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .featured-period .mono {
+    font-size: 12px;
+    color: var(--ink-500);
+    letter-spacing: 0.05em;
+  }
+
+  .featured-co {
+    font-size: 13px;
+    color: var(--ink-200);
+  }
+
+  .featured-title {
+    font-family: var(--f-display);
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--ink-100);
+    margin-bottom: 20px;
+    max-width: 28ch;
+    position: relative;
+  }
+
+  .featured-summary {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-200);
+    max-width: 64ch;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .featured-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .featured-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .metric {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .metric-value {
+    font-size: clamp(28px, 3.5vw, 44px);
+    line-height: 1;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    color: var(--ink-500);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .featured-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    color: var(--accent-cyan);
+    letter-spacing: 0.05em;
+    transition: gap 200ms;
+    position: relative;
+  }
+
+  .featured-cta:hover { gap: 14px; }
+
+  /* ==== 紧凑项目 ==== */
+  .compact-section {
+    border-top: 1px solid var(--line);
+    padding-top: 64px;
+  }
+
+  .compact-head { margin-bottom: 16px; }
+
+  .compact-intro {
+    max-width: 64ch;
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+
+  .compact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .compact-card {
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    background: var(--bg-elev-1);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: all 300ms;
+    position: relative;
+  }
+
+  .compact-card:hover {
+    border-color: var(--line-accent);
+    background: var(--bg-elev-2);
+    transform: translateY(-2px);
+  }
+
+  .compact-period {
+    font-size: 11px;
+    color: var(--accent-cyan);
+    letter-spacing: 0.06em;
+  }
+
+  .accent-mint .compact-period { color: var(--accent-mint); }
+  .accent-violet .compact-period { color: var(--accent-violet); }
+
+  .compact-title {
+    font-family: var(--f-body);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink-100);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .compact-summary {
+    font-size: 13px;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .compact-metrics {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+
+  .compact-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 70px;
+  }
+
+  .cm-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent-mint);
+  }
+
+  .cm-label {
+    font-size: 10.5px;
+    color: var(--ink-500);
+  }
+
+  .compact-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .compact-tags .tag {
+    font-size: 10.5px;
+    padding: 3px 8px;
+  }
+
+  @media (max-width: 1024px) {
+    .compact-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .featured-metrics { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .metric-value { font-size: 24px; }
+    .compact-grid { grid-template-columns: 1fr; }
+    .featured-meta { gap: 16px; }
+  }
+</style>

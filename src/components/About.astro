@@ -1,0 +1,337 @@
+---
+// 关于我 + AI 能力栈
+const skillStack = [
+  {
+    label: 'AI 应用架构',
+    items: ['RAG', 'Agent 工作流', 'Function Calling', 'LangChain / LangGraph', 'Multi-Agent 协同'],
+  },
+  {
+    label: '检索与知识工程',
+    items: ['文档分块策略', '向量检索', 'Markdown / KV 结构化', '知识库质量优化'],
+  },
+  {
+    label: '评测与迭代',
+    items: ['Eval 体系', 'LLM-as-Judge', '人工标注', '规则判分', 'Badcase 回流', '线上效果监控'],
+  },
+  {
+    label: '模型选型与优化',
+    items: ['Qwen / DeepSeek / Claude / GPT', 'Prompt 工程', '成本 / 延迟 / 效果权衡', '本地化部署'],
+  },
+  {
+    label: '端侧 AI',
+    items: ['MobileNetV3', 'INT8 量化', '板端推理', '模型 Benchmark', '降级策略'],
+  },
+  {
+    label: '产品与数据工具',
+    items: ['Figma · Stitch', 'Python 数据分析', 'A/B 测试', 'ROI 评估模型'],
+  },
+];
+---
+
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-head">
+      <span class="eyebrow">01 — About</span>
+      <h2 class="about-title display display-md">
+        AI 产品经理之于一家公司，<br/>
+        是<em>大模型能力</em>与<em>真实业务</em>之间的<em>翻译者</em>。
+      </h2>
+    </div>
+
+    <div class="about-grid">
+      <!-- 左侧文字 -->
+      <div class="about-text">
+        <p class="body-text-lg">
+          我做产品的方法论从拼多多策略产品时期沉淀至今——
+          <span class="accent">用数据驱动决策、用 Eval 衡量产出、用闭环迭代追求长期价值</span>。
+          AI 时代我把这套方法论平移到了大模型场景。
+        </p>
+        <p class="body-text">
+          过去 4 年，我从 C 端电商策略产品（拼多多 ROI 1.2→1.8）到智能硬件软硬一体（伊赛尔
+          92%+ 找星成功率，单季营收+35%），再到企业级 Multi-Agent 工作流（TILTA 首稿可用率
+          40%→70%+，沉淀 2 周接入新场景的标准框架）。
+        </p>
+        <p class="body-text muted">
+          每一段经历的底层都是同一个问题：
+          <span class="accent">如何把模糊的业务需求，拆解成 AI 能稳定交付、可量化验证的产品能力。</span>
+          这也是我为什么一边做企业 B 端项目、一边自研 C 端 Eatit——
+          相同方法论的双向验证。
+        </p>
+
+        <div class="about-tags">
+          <span class="tag tag-accent">Multi-Agent</span>
+          <span class="tag tag-accent">RAG</span>
+          <span class="tag tag-accent">Eval 体系</span>
+          <span class="tag tag-mint">Prompt 工程</span>
+          <span class="tag tag-mint">端侧 AI</span>
+          <span class="tag tag-mint">Context Engineering</span>
+        </div>
+      </div>
+
+      <!-- 右侧基本信息卡 -->
+      <aside class="about-side">
+        <div class="info-card">
+          <div class="info-row">
+            <span class="info-label">学历</span>
+            <span class="info-value">湖南涉外经济学院 · 本科<br/><span class="muted mono">统招专升本 · 2022—2024</span></span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">坐标</span>
+            <span class="info-value">深圳 · 可远程协作</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">经验</span>
+            <span class="info-value">4 年产品 / 近 3 年 AI</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">期望</span>
+            <span class="info-value">AI 产品经理 / Agent 方向</span>
+          </div>
+        </div>
+
+        <div class="quote-card">
+          <span class="quote-mark">"</span>
+          <p>
+            判断一个需求是否值得用 AI ，我有三个原则：
+            <span class="accent">高频、耗时、可标准化。</span>
+            主动排除强主观判断的场景，让 AI 做稳定能做好的事。
+          </p>
+          <span class="quote-author mono">— 我的产品工作笔记</span>
+        </div>
+      </aside>
+    </div>
+
+    <!-- 能力栈 -->
+    <div class="skills-block">
+      <span class="eyebrow" style="margin-bottom: 24px;">— Skill Stack</span>
+
+      <div class="skills-grid">
+        {skillStack.map((cat, idx) => (
+          <div class="skill-cat">
+            <div class="skill-cat-head">
+              <span class="skill-num mono">{String(idx + 1).padStart(2, '0')}</span>
+              <h3 class="skill-cat-title">{cat.label}</h3>
+            </div>
+            <ul class="skill-items">
+              {cat.items.map((it) => <li>{it}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-head {
+    margin-bottom: 80px;
+    max-width: 100%;
+  }
+
+  .about-title {
+    margin-top: 24px;
+    max-width: 22ch;
+    font-size: clamp(36px, 5vw, 64px);
+  }
+
+  .about-title em {
+    font-style: italic;
+    color: var(--accent-cyan);
+    font-weight: 400;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 64px;
+    margin-bottom: 120px;
+  }
+
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .about-side {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: sticky;
+    top: 100px;
+    align-self: start;
+  }
+
+  .info-card {
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 24px;
+    background: var(--bg-elev-1);
+  }
+
+  .info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .info-row:first-child { padding-top: 0; }
+  .info-row:last-child { border-bottom: 0; padding-bottom: 0; }
+
+  .info-label {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: var(--ink-500);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    flex: 0 0 60px;
+    padding-top: 2px;
+  }
+
+  .info-value {
+    font-size: 14px;
+    color: var(--ink-100);
+    flex: 1;
+    line-height: 1.5;
+  }
+
+  .quote-card {
+    position: relative;
+    padding: 28px 24px 24px;
+    border-radius: var(--r-lg);
+    background: linear-gradient(135deg, var(--accent-cyan-soft), transparent);
+    border: 1px solid var(--line-accent);
+  }
+
+  .quote-mark {
+    position: absolute;
+    top: 0;
+    left: 16px;
+    font-family: var(--f-display);
+    font-size: 80px;
+    line-height: 1;
+    color: var(--accent-cyan);
+    opacity: 0.5;
+    font-style: italic;
+  }
+
+  .quote-card p {
+    font-family: var(--f-display);
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--ink-100);
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  .quote-author {
+    font-size: 11px;
+    color: var(--ink-500);
+    letter-spacing: 0.05em;
+  }
+
+  /* 能力栈区域 */
+  .skills-block {
+    border-top: 1px solid var(--line);
+    padding-top: 64px;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 24px;
+  }
+
+  .skill-cat {
+    padding: 28px 24px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    background: var(--bg-elev-1);
+    transition: all 300ms;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-cat::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--accent-cyan-soft), transparent 60%);
+    opacity: 0;
+    transition: opacity 300ms;
+    pointer-events: none;
+  }
+
+  .skill-cat:hover {
+    border-color: var(--line-accent);
+    transform: translateY(-2px);
+  }
+  .skill-cat:hover::before { opacity: 1; }
+
+  .skill-cat-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+
+  .skill-num {
+    font-size: 12px;
+    color: var(--accent-cyan);
+    letter-spacing: 0.05em;
+  }
+
+  .skill-cat-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink-100);
+  }
+
+  .skill-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+  }
+
+  .skill-items li {
+    font-size: 13.5px;
+    color: var(--ink-200);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .skill-items li::before {
+    content: '·';
+    color: var(--accent-cyan);
+    position: absolute;
+    left: 4px;
+    font-weight: bold;
+  }
+
+  @media (max-width: 1024px) {
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .about-side { position: static; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .skills-grid { grid-template-columns: 1fr; }
+    .about-head { margin-bottom: 48px; }
+  }
+</style>

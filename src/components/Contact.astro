@@ -1,0 +1,424 @@
+---
+// 联系方式
+---
+
+<section class="contact" id="contact">
+  <!-- 装饰大字 -->
+  <div class="contact-bg-text" aria-hidden="true">LET'S BUILD</div>
+
+  <div class="container-narrow contact-inner">
+    <div class="contact-head">
+      <span class="eyebrow">05 — Get in touch</span>
+      <h2 class="contact-title">
+        如果你也在做<em>有趣的 AI 产品</em>，<br/>
+        <span class="contact-title-accent">让我们聊聊。</span>
+      </h2>
+      <p class="body-text-lg muted contact-sub">
+        无论是企业级 Agent 落地、AI Native 产品 0-1，
+        还是大模型应用方向的开放话题——我都很乐意深入交流。
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- 邮箱卡 -->
+      <a href="mailto:h13141557217@petalmail.com" class="contact-card">
+        <div class="cc-head">
+          <span class="cc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="14" rx="2"/>
+              <path d="m3 7 9 6 9-6"/>
+            </svg>
+          </span>
+          <span class="cc-label mono">PRIMARY · 优先</span>
+        </div>
+        <div class="cc-mid">
+          <h3 class="cc-method">邮箱</h3>
+          <p class="cc-value">h13141557217@petalmail.com</p>
+        </div>
+        <div class="cc-foot">
+          <span class="muted">点击直接发送邮件</span>
+          <span class="cc-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 微信卡 -->
+      <div class="contact-card contact-card-wx" id="wx-card">
+        <div class="cc-head">
+          <span class="cc-icon cc-icon-wx">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 9h.01"/>
+              <path d="M15 9h.01"/>
+              <path d="M9 12c-3 0-5 2-5 4.5 0 1 .5 2 1.5 2.5l-.5 2 2-1c.5.5 1.5 1 3 1s3-.5 4-1.5"/>
+              <path d="M15 8c4 0 6 2.5 6 5.5 0 1.5-.5 3-2 4l.5 2-2-1c-1 .5-2 .5-3 .5"/>
+            </svg>
+          </span>
+          <span class="cc-label mono">DIRECT · 快速</span>
+        </div>
+        <div class="cc-mid">
+          <h3 class="cc-method">微信</h3>
+          <p class="cc-value">手机号即微信号<br/><span class="mono cc-wx-num">131-4155-7217</span></p>
+        </div>
+        <div class="cc-foot">
+          <button class="cc-copy" id="copy-wx" data-copy="13141557217">
+            <span>复制微信号</span>
+            <span class="cc-arrow">⌘</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 备注 -->
+    <div class="contact-note">
+      <p class="muted">
+        <span class="accent">注：</span>
+        添加微信请备注「岗位 + 公司」，邮件请简述合作或岗位信息，
+        通常我会在 <strong class="ink-100">12 小时内</strong>响应。
+      </p>
+    </div>
+  </div>
+
+  <!-- 简历下载 -->
+  <div class="container resume-download">
+    <span class="muted mono">— 你也可以下载我的简历 PDF</span>
+    <a href="/resume.pdf" target="_blank" class="btn btn-primary resume-btn">
+      <span>下载简历 PDF</span>
+      <span class="btn-arrow">↓</span>
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-l">
+      <div class="footer-brand">
+        <span class="brand-mark-sm">Z</span>
+        <span>周鸿涛 · 2026</span>
+      </div>
+      <p class="muted footer-tag">Built with Astro · Designed in Figma · Powered by 4 yrs of real AI product practice.</p>
+    </div>
+    <div class="footer-r">
+      <span class="muted mono">v1.0 · Last updated 2026.04</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .contact {
+    position: relative;
+    padding: clamp(120px, 18vh, 200px) 0 clamp(80px, 12vh, 140px);
+    overflow: hidden;
+  }
+
+  /* 大装饰字 */
+  .contact-bg-text {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--f-display);
+    font-size: clamp(120px, 22vw, 320px);
+    font-style: italic;
+    line-height: 0.85;
+    color: var(--bg-elev-1);
+    letter-spacing: -0.04em;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    z-index: 0;
+    -webkit-text-stroke: 1px rgba(0, 229, 255, 0.08);
+    color: transparent;
+  }
+
+  .contact-inner {
+    position: relative;
+    z-index: 2;
+  }
+
+  .contact-head {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .contact-head .eyebrow {
+    justify-content: center;
+  }
+
+  .contact-title {
+    font-family: var(--f-display);
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--ink-100);
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  .contact-title em {
+    font-style: italic;
+    background: var(--grad-cyan-violet);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 400;
+  }
+
+  .contact-title-accent {
+    font-style: italic;
+    color: var(--accent-mint);
+  }
+
+  .contact-sub {
+    margin: 0 auto;
+    max-width: 56ch;
+  }
+
+  /* 联系卡片 */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px;
+    border-radius: var(--r-lg);
+    background: linear-gradient(135deg, var(--bg-elev-1) 0%, var(--bg-elev-2) 100%);
+    border: 1px solid var(--line);
+    transition: all 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .contact-card::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-cyan-soft), transparent 70%);
+    opacity: 0;
+    transition: opacity 400ms;
+    pointer-events: none;
+  }
+
+  .contact-card-wx::before {
+    background: radial-gradient(circle, var(--accent-mint-soft), transparent 70%);
+  }
+
+  .contact-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--line-accent);
+  }
+  .contact-card:hover::before { opacity: 1; }
+  .contact-card-wx:hover { border-color: rgba(94, 255, 196, 0.3); }
+
+  .cc-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cc-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--accent-cyan-soft);
+    color: var(--accent-cyan);
+    display: grid;
+    place-items: center;
+  }
+
+  .cc-icon-wx {
+    background: var(--accent-mint-soft);
+    color: var(--accent-mint);
+  }
+
+  .cc-label {
+    font-size: 10.5px;
+    color: var(--ink-500);
+    letter-spacing: 0.1em;
+  }
+
+  .cc-mid {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .cc-method {
+    font-family: var(--f-body);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-400);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .cc-value {
+    font-family: var(--f-display);
+    font-size: clamp(16px, 1.8vw, 22px);
+    font-style: italic;
+    color: var(--ink-100);
+    line-height: 1.3;
+    word-break: break-all;
+  }
+
+  .cc-wx-num {
+    font-style: normal;
+    font-size: 0.75em;
+    color: var(--accent-mint);
+  }
+
+  .cc-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+  }
+
+  .cc-arrow {
+    font-family: var(--f-mono);
+    color: var(--accent-cyan);
+    transition: transform 300ms;
+  }
+
+  .contact-card:hover .cc-arrow { transform: translateX(4px); }
+
+  .cc-copy {
+    background: none;
+    border: none;
+    color: var(--accent-mint);
+    font-family: var(--f-body);
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    transition: gap 200ms;
+  }
+
+  .cc-copy:hover { gap: 12px; }
+
+  .cc-copy.copied {
+    color: var(--accent-mint);
+  }
+
+  /* 备注 */
+  .contact-note {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  /* 简历下载 */
+  .resume-download {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-top: 48px;
+    border-top: 1px solid var(--line);
+    position: relative;
+    z-index: 2;
+  }
+
+  .resume-btn { padding: 12px 22px; font-size: 13px; }
+
+  /* Footer */
+  .footer {
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+    background: var(--bg-deepest);
+    position: relative;
+    z-index: 2;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-l {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--f-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-100);
+  }
+
+  .brand-mark-sm {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background: var(--grad-cyan-violet);
+    display: grid;
+    place-items: center;
+    font-family: var(--f-display);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--bg-deepest);
+    letter-spacing: -0.04em;
+  }
+
+  .footer-tag {
+    font-size: 12px;
+  }
+
+  @media (max-width: 640px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .resume-download { flex-direction: column; gap: 12px; }
+  }
+</style>
+
+<script>
+  // 复制微信号
+  const copyBtn = document.getElementById('copy-wx');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      const text = (copyBtn as HTMLElement).dataset.copy || '';
+      try {
+        await navigator.clipboard.writeText(text);
+        const span = copyBtn.querySelector('span');
+        if (span) {
+          const original = span.textContent;
+          span.textContent = '✓ 已复制到剪贴板';
+          copyBtn.classList.add('copied');
+          setTimeout(() => {
+            if (span && original) span.textContent = original;
+            copyBtn.classList.remove('copied');
+          }, 2000);
+        }
+      } catch (err) {
+        console.error('Copy failed:', err);
+      }
+    });
+  }
+</script>

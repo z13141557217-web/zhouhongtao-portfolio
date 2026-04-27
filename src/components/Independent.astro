@@ -1,0 +1,895 @@
+---
+// 自研项目展示
+const longwriterShots = [
+  { src: '/images/longwriter/01-parse-result.png', label: '智能解析 · 摘要提炼' },
+  { src: '/images/longwriter/02-hot-points.png', label: '风格标签 · 爆点判断' },
+  { src: '/images/longwriter/03-history-list.png', label: '历史记录 · 创作时间线' },
+  { src: '/images/longwriter/04-history-detail.png', label: '校验报告 · 风险提示' },
+  { src: '/images/longwriter/05-result-actions.png', label: '结果操作 · 一键导出' },
+  { src: '/images/longwriter/06-model-config.png', label: '模型配置 · OpenAI Compatible' },
+];
+---
+
+<section class="independent" id="independent">
+  <!-- 装饰背景 -->
+  <div class="indep-bg-grid" aria-hidden="true"></div>
+
+  <div class="container">
+    <div class="indep-head">
+      <span class="eyebrow">03 — Independent Work</span>
+      <h2 class="display display-md indep-title">
+        企业项目证明<em>能力</em>，<br/>
+        独立作品证明<em>方法论可迁移</em>。
+      </h2>
+      <p class="body-text-lg muted indep-intro">
+        以下是两个我从需求定义、技术选型、Prompt 工程，到前后端开发、灰度内测的<strong class="ink-200">完整端到端独立产品</strong>。
+        TILTA 用的 Multi-Agent + Eval 那套方法论，在这里得到了同等深度的复用。
+      </p>
+    </div>
+
+    <!-- ===== Eatit 项目 - 旗舰展示 ===== -->
+    <article class="eatit-flagship">
+      <!-- 标头 -->
+      <div class="eatit-header">
+        <div class="eatit-meta">
+          <span class="indep-num mono">P06</span>
+          <div class="indep-badge">
+            <span class="indep-dot"></span>
+            <span>macOS MVP 已上线 · 持续迭代中</span>
+          </div>
+        </div>
+
+        <h3 class="eatit-title">
+          <span class="eatit-name">Eatit</span>
+          <span class="eatit-em">— AI 模拟面试系统</span>
+        </h3>
+
+        <p class="eatit-desc">
+          上传简历 + 岗位 JD，AI 自动生成<strong>定制化追问链</strong>，
+          模拟真实面试节奏，输出逐轮复盘与整体评估报告。
+          <span class="muted">面向求职候选人，让面试准备从"找题库刷题"升级为"针对性靶向训练"。</span>
+        </p>
+      </div>
+
+      <!-- Live Demo 入口 - 最强卖点 -->
+      <div class="demo-cta-row">
+        <a href="/eatit-demo/" target="_blank" class="demo-cta">
+          <div class="demo-cta-l">
+            <span class="demo-cta-eyebrow mono">▶ LIVE INTERACTIVE PROTOTYPE</span>
+            <span class="demo-cta-title">点击进入 Eatit 完整交互原型</span>
+            <span class="demo-cta-sub muted">5 个核心页面 · 真实数据流 · 可点击体验所有交互</span>
+          </div>
+          <div class="demo-cta-r">
+            <span class="demo-cta-arrow">→</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Multi-Agent 架构图 -->
+      <div class="agent-arch">
+        <span class="eyebrow">— Multi-Agent 架构</span>
+        <h4 class="arch-head">
+          5 个 Agent 协作 + Session Orchestrator 统一编排
+        </h4>
+
+        <div class="agent-pipeline">
+          <div class="agent-node">
+            <span class="agent-num mono">01</span>
+            <h5>Parse Agent</h5>
+            <p>解析简历与 JD，提取候选人画像和岗位要求的结构化信息</p>
+          </div>
+          <span class="agent-arrow">→</span>
+          <div class="agent-node">
+            <span class="agent-num mono">02</span>
+            <h5>Framework Agent</h5>
+            <p>基于岗位与画像生成定制化追问框架与轮次规划</p>
+          </div>
+          <span class="agent-arrow">→</span>
+          <div class="agent-node">
+            <span class="agent-num mono">03</span>
+            <h5>Interviewer Agent</h5>
+            <p>执行追问，根据用户回答动态调整下一题深度与方向</p>
+          </div>
+          <span class="agent-arrow">→</span>
+          <div class="agent-node">
+            <span class="agent-num mono">04</span>
+            <h5>Compression Agent</h5>
+            <p>压缩长对话上下文，保留关键评估锚点，避免超出窗口</p>
+          </div>
+          <span class="agent-arrow">→</span>
+          <div class="agent-node accent-mint">
+            <span class="agent-num mono">05</span>
+            <h5>Report Agent</h5>
+            <p>基于全场记录生成逐轮复盘 + 整体评估报告</p>
+          </div>
+        </div>
+
+        <!-- Session Orchestrator -->
+        <div class="orchestrator">
+          <div class="orch-head">
+            <span class="orch-icon mono">⚙</span>
+            <h5>Session Orchestrator</h5>
+          </div>
+          <p>
+            统一管理状态流转、失败重试、降级策略与报告生成时机。
+            单 Agent 失败可重试或降级，不让整场面试崩盘——
+            <span class="accent">这是单 Prompt 大模型做不到的工程稳定性。</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- 设计决策亮点 -->
+      <div class="design-highlights">
+        <div class="hl-item">
+          <span class="hl-num">①</span>
+          <h5>为什么用 Multi-Agent 而不是单大 Prompt？</h5>
+          <p>
+            <strong class="accent">职责分离 + 上下文管理 + 失败隔离</strong>。
+            每个 Agent 的 Prompt 和 Eval 可独立优化；Compression 专门管上下文压缩，
+            比让全能 Agent 自己管理稳定得多；单点失败不影响全局。
+          </p>
+        </div>
+        <div class="hl-item">
+          <span class="hl-num">②</span>
+          <h5>Session Orchestrator 解决了什么？</h5>
+          <p>
+            状态流转的<strong class="accent">明确进入/退出条件</strong>、
+            失败时的<strong class="accent">分级重试与降级</strong>、
+            报告生成前的<strong class="accent">完整性校验</strong>——
+            这套设计直接复用了我在 TILTA 做企业 Multi-Agent 的工程经验。
+          </p>
+        </div>
+        <div class="hl-item">
+          <span class="hl-num">③</span>
+          <h5>方法论可迁移性的最强证据</h5>
+          <p>
+            TILTA 是企业 B 端、强合规、本地部署；Eatit 是 C 端、轻量、API 直连。
+            场景天差地别，但<strong class="accent">底层方法论 100% 复用</strong>——
+            这才是 AI 产品经理真正的护城河。
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ===== 长文生成应用 ===== -->
+    <article class="longwriter-card" id="longwriter">
+      <div class="lw-grid">
+        <!-- 左侧文字 -->
+        <div class="lw-info">
+          <div class="lw-meta">
+            <span class="indep-num mono">P07</span>
+            <div class="indep-badge">
+              <span class="indep-dot accent-violet-dot"></span>
+              <span>种子用户内测中</span>
+            </div>
+          </div>
+
+          <h3 class="lw-title">
+            长文生成 AI 应用
+            <span class="lw-em">— 面向内容创作者的深度长文工具</span>
+          </h3>
+
+          <p class="lw-desc">
+            用户输入网址或文章摘要，通过 <strong class="accent">Context Engineering</strong>、
+            <strong class="accent">多轮生成规划</strong>与<strong class="accent">模型参数调控</strong>，
+            输出结构完整、观点密度较高的长文初稿。
+          </p>
+
+          <!-- 三大核心问题 -->
+          <ul class="lw-problems">
+            <li>
+              <span class="lw-prob-tag">①</span>
+              <div>
+                <strong>上下文连贯性</strong>
+                <span>— Context Engineering 维持跨段落语义一致</span>
+              </div>
+            </li>
+            <li>
+              <span class="lw-prob-tag">②</span>
+              <div>
+                <strong>结构稳定性</strong>
+                <span>— 多轮生成规划，先骨架后填充</span>
+              </div>
+            </li>
+            <li>
+              <span class="lw-prob-tag">③</span>
+              <div>
+                <strong>观点密度</strong>
+                <span>— 温度调控 + Prompt 约束控制信息熵</span>
+              </div>
+            </li>
+          </ul>
+
+          <div class="lw-tech">
+            <span class="tag tag-accent">Context Engineering</span>
+            <span class="tag tag-accent">Prompt 工程</span>
+            <span class="tag">React Native</span>
+            <span class="tag">OpenAI Compatible API</span>
+          </div>
+        </div>
+
+        <!-- 右侧手机截图轮播 -->
+        <div class="lw-shots">
+          <div class="phone-stack">
+            {longwriterShots.map((shot, i) => (
+              <div class={`phone-frame phone-${i}`} style={`--idx: ${i};`}>
+                <img src={shot.src} alt={shot.label} loading="lazy" />
+                <span class="phone-label mono">{shot.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- 截图缩略图栏 -->
+      <div class="lw-thumb-row">
+        <span class="lw-thumb-eyebrow mono">— 6 屏关键路径</span>
+        <div class="lw-thumbs">
+          {longwriterShots.map((shot, i) => (
+            <button class={`lw-thumb ${i === 0 ? 'active' : ''}`} data-idx={i}>
+              <img src={shot.src} alt={shot.label} loading="lazy" />
+              <span class="lw-thumb-label">{shot.label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<style>
+  .independent {
+    position: relative;
+    padding-top: clamp(80px, 12vh, 140px);
+    padding-bottom: clamp(80px, 12vh, 140px);
+  }
+
+  .indep-bg-grid {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 50%, rgba(94, 255, 196, 0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .indep-head { margin-bottom: 80px; max-width: 80ch; }
+  .indep-title { margin-top: 24px; margin-bottom: 24px; max-width: 22ch; }
+  .indep-title em {
+    font-style: italic;
+    color: var(--accent-mint);
+    font-weight: 400;
+  }
+  .indep-intro { max-width: 64ch; }
+  .ink-200 { color: var(--ink-100); font-weight: 500; }
+
+  .indep-num {
+    font-size: 14px;
+    color: var(--accent-mint);
+    letter-spacing: 0.1em;
+  }
+
+  .indep-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: var(--accent-mint-soft);
+    border: 1px solid rgba(94, 255, 196, 0.2);
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: var(--accent-mint);
+  }
+
+  .indep-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-mint);
+    box-shadow: 0 0 8px var(--accent-mint);
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .accent-violet-dot {
+    background: var(--accent-violet);
+    box-shadow: 0 0 8px var(--accent-violet);
+  }
+
+  /* ===== Eatit 旗舰卡 ===== */
+  .eatit-flagship {
+    position: relative;
+    padding: clamp(40px, 6vw, 72px);
+    border-radius: var(--r-xl);
+    background: linear-gradient(135deg, var(--bg-elev-1) 0%, var(--bg-elev-2) 100%);
+    border: 1px solid var(--line-strong);
+    margin-bottom: 80px;
+    overflow: hidden;
+  }
+
+  .eatit-flagship::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 60%;
+    height: 100%;
+    background: radial-gradient(ellipse, var(--accent-mint-soft) 0%, transparent 60%);
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .eatit-header {
+    position: relative;
+    margin-bottom: 40px;
+    max-width: 72ch;
+  }
+
+  .eatit-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .eatit-title {
+    font-family: var(--f-display);
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--ink-100);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .eatit-name {
+    font-style: italic;
+    background: var(--grad-mint-cyan);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .eatit-em {
+    font-size: 0.5em;
+    color: var(--ink-400);
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .eatit-desc {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-200);
+  }
+
+  /* Live Demo CTA */
+  .demo-cta-row {
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .demo-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 28px 32px;
+    border-radius: var(--r-lg);
+    background: linear-gradient(135deg, var(--accent-mint) 0%, var(--accent-cyan) 100%);
+    color: var(--bg-deepest);
+    text-decoration: none;
+    transition: all 300ms;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .demo-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.2), transparent 40%);
+    opacity: 0;
+    transition: opacity 300ms;
+    pointer-events: none;
+  }
+
+  .demo-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 60px -20px var(--accent-mint);
+  }
+
+  .demo-cta:hover::before { opacity: 1; }
+
+  .demo-cta-l {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .demo-cta-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    opacity: 0.7;
+  }
+
+  .demo-cta-title {
+    font-family: var(--f-display);
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-style: italic;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .demo-cta-sub {
+    font-size: 13px;
+    color: rgba(4, 6, 13, 0.7);
+  }
+
+  .demo-cta-arrow {
+    font-family: var(--f-display);
+    font-size: 56px;
+    font-style: italic;
+    line-height: 1;
+    transition: transform 300ms;
+  }
+
+  .demo-cta:hover .demo-cta-arrow { transform: translateX(8px); }
+
+  /* Multi-Agent 架构 */
+  .agent-arch {
+    margin-bottom: 56px;
+    position: relative;
+  }
+
+  .arch-head {
+    font-family: var(--f-display);
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 400;
+    color: var(--ink-100);
+    margin-top: 12px;
+    margin-bottom: 32px;
+    letter-spacing: -0.01em;
+  }
+
+  .agent-pipeline {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 24px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .agent-node {
+    flex: 1 1 0;
+    min-width: 150px;
+    padding: 18px 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    background: var(--bg-elev-1);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 200ms;
+    position: relative;
+  }
+
+  .agent-node::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-cyan);
+    opacity: 0.6;
+  }
+
+  .agent-node.accent-mint::before {
+    background: var(--accent-mint);
+  }
+
+  .agent-node:hover {
+    transform: translateY(-2px);
+    border-color: var(--line-accent);
+  }
+
+  .agent-num {
+    font-size: 11px;
+    color: var(--accent-cyan);
+    letter-spacing: 0.05em;
+  }
+
+  .agent-node.accent-mint .agent-num {
+    color: var(--accent-mint);
+  }
+
+  .agent-node h5 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-100);
+    letter-spacing: -0.01em;
+  }
+
+  .agent-node p {
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--ink-400);
+  }
+
+  .agent-arrow {
+    align-self: center;
+    color: var(--accent-cyan);
+    font-size: 18px;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
+  .orchestrator {
+    padding: 24px 28px;
+    border-radius: var(--r-md);
+    background: var(--accent-cyan-soft);
+    border: 1px solid var(--line-accent);
+    border-style: dashed;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .orch-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .orch-icon {
+    font-size: 16px;
+    color: var(--accent-cyan);
+  }
+
+  .orch-head h5 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink-100);
+  }
+
+  .orchestrator p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-200);
+    max-width: 70ch;
+  }
+
+  /* 设计亮点 */
+  .design-highlights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+
+  .hl-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hl-num {
+    font-family: var(--f-display);
+    font-size: 36px;
+    font-style: italic;
+    color: var(--accent-mint);
+    line-height: 1;
+  }
+
+  .hl-item h5 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink-100);
+    line-height: 1.4;
+  }
+
+  .hl-item p {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--ink-400);
+  }
+
+  /* ===== 长文生成应用 ===== */
+  .longwriter-card {
+    padding: clamp(40px, 6vw, 64px);
+    border-radius: var(--r-xl);
+    border: 1px solid var(--line);
+    background: var(--bg-elev-1);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .longwriter-card::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--accent-violet-soft), transparent 60%);
+    pointer-events: none;
+  }
+
+  .lw-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 64px;
+    align-items: center;
+    position: relative;
+    margin-bottom: 56px;
+  }
+
+  .lw-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .lw-meta .indep-num { color: var(--accent-violet); }
+  .lw-meta .indep-badge {
+    background: var(--accent-violet-soft);
+    border-color: rgba(183, 148, 255, 0.2);
+    color: var(--accent-violet);
+  }
+
+  .lw-title {
+    font-family: var(--f-display);
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--ink-100);
+    margin-bottom: 20px;
+  }
+
+  .lw-em {
+    display: block;
+    font-size: 0.55em;
+    color: var(--ink-400);
+    margin-top: 6px;
+  }
+
+  .lw-desc {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-200);
+    margin-bottom: 28px;
+  }
+
+  .lw-problems {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .lw-problems li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 18px;
+    background: var(--bg-elev-2);
+    border-radius: var(--r-md);
+    border: 1px solid var(--line);
+    transition: all 250ms;
+  }
+
+  .lw-problems li:hover {
+    border-color: var(--line-accent);
+    transform: translateX(4px);
+  }
+
+  .lw-prob-tag {
+    font-family: var(--f-display);
+    font-size: 22px;
+    font-style: italic;
+    color: var(--accent-cyan);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .lw-problems strong {
+    display: block;
+    font-size: 14px;
+    color: var(--ink-100);
+    margin-bottom: 2px;
+    font-weight: 600;
+  }
+
+  .lw-problems span {
+    font-size: 13px;
+    color: var(--ink-400);
+  }
+
+  .lw-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* 手机堆叠展示 */
+  .lw-shots {
+    position: relative;
+    height: 540px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .phone-stack {
+    position: relative;
+    width: 280px;
+    height: 540px;
+  }
+
+  .phone-frame {
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+    background: var(--bg-elev-2);
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6),
+                0 0 0 8px rgba(255, 255, 255, 0.04);
+    overflow: hidden;
+    transition: all 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform-origin: center bottom;
+  }
+
+  .phone-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .phone-label {
+    display: none;
+  }
+
+  /* 第0张是主图 */
+  .phone-0 { z-index: 6; opacity: 1; transform: rotate(0deg); }
+  .phone-1 { z-index: 5; opacity: 0.6; transform: rotate(4deg) translate(40px, 20px); }
+  .phone-2 { z-index: 4; opacity: 0.35; transform: rotate(-3deg) translate(-50px, 40px); }
+  .phone-3, .phone-4, .phone-5 { display: none; }
+
+  /* 缩略图栏 */
+  .lw-thumb-row {
+    border-top: 1px solid var(--line);
+    padding-top: 32px;
+    position: relative;
+  }
+
+  .lw-thumb-eyebrow {
+    font-size: 11px;
+    color: var(--ink-500);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .lw-thumbs {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+  }
+
+  .lw-thumb {
+    background: var(--bg-elev-2);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 8px;
+    cursor: pointer;
+    transition: all 250ms;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: inherit;
+    font-family: inherit;
+    text-align: left;
+  }
+
+  .lw-thumb:hover {
+    border-color: var(--line-accent);
+    transform: translateY(-3px);
+  }
+
+  .lw-thumb img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 8px;
+  }
+
+  .lw-thumb-label {
+    font-size: 11px;
+    color: var(--ink-400);
+    line-height: 1.3;
+    padding: 0 4px 4px;
+  }
+
+  .lw-thumb.active {
+    border-color: var(--accent-cyan);
+    background: var(--accent-cyan-soft);
+  }
+
+  /* ===== 响应式 ===== */
+  @media (max-width: 1024px) {
+    .agent-pipeline {
+      flex-direction: column;
+    }
+    .agent-arrow {
+      transform: rotate(90deg);
+      align-self: flex-start;
+      margin-left: 24px;
+    }
+    .design-highlights { grid-template-columns: 1fr; gap: 32px; }
+    .lw-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .lw-thumbs { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .demo-cta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 20px 24px;
+    }
+    .demo-cta-arrow { font-size: 36px; }
+    .lw-thumbs { grid-template-columns: repeat(2, 1fr); }
+    .eatit-title { font-size: 36px; flex-direction: column; align-items: flex-start; gap: 0; }
+    .lw-shots { height: 460px; }
+    .phone-stack { width: 240px; height: 460px; }
+  }
+</style>
+
+<script>
+  // 缩略图点击切换主预览
+  const thumbs = document.querySelectorAll('.lw-thumb');
+  const phones = document.querySelectorAll('.phone-frame');
+  const phoneImgs = document.querySelectorAll('.phone-frame img');
+
+  thumbs.forEach((t) => {
+    t.addEventListener('click', () => {
+      const idx = parseInt((t as HTMLElement).dataset.idx || '0');
+      thumbs.forEach((o) => o.classList.remove('active'));
+      t.classList.add('active');
+
+      // 把选中的图替换到顶部 phone-0 位置
+      const targetSrc = (t.querySelector('img') as HTMLImageElement)?.src;
+      const mainImg = phoneImgs[0] as HTMLImageElement;
+      if (mainImg && targetSrc) {
+        mainImg.src = targetSrc;
+      }
+    });
+  });
+
+  // demo-cta 鼠标光晕
+  const demoCta = document.querySelector<HTMLAnchorElement>('.demo-cta');
+  if (demoCta) {
+    demoCta.addEventListener('mousemove', (e) => {
+      const rect = demoCta.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      demoCta.style.setProperty('--mx', `${x}%`);
+      demoCta.style.setProperty('--my', `${y}%`);
+    });
+  }
+</script>

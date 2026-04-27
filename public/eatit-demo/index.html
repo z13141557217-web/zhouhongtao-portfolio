@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Eatit — AI 模拟面试 · 周鸿涛作品集</title>
+<meta name="description" content="Eatit 是一个面向求职候选人的 AI 模拟面试系统,基于 Multi-Agent 架构设计。本页面是完整交互原型。"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"/>
+<link rel="stylesheet" href="styles.css"/>
+
+<style>
+  /* 加载态 */
+  .eatit-loading {
+    position: fixed;
+    inset: 0;
+    background: #FAFAF7;
+    display: grid;
+    place-items: center;
+    z-index: 9999;
+    transition: opacity 400ms;
+  }
+  .eatit-loading.fade { opacity: 0; pointer-events: none; }
+  .eatit-loading-inner {
+    text-align: center;
+    font-family: 'Instrument Serif', serif;
+  }
+  .eatit-loading-mark {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: #1F6B3A;
+    display: grid;
+    place-items: center;
+    font-size: 36px;
+    color: white;
+    font-style: italic;
+    margin: 0 auto 16px;
+  }
+  .eatit-loading h1 {
+    font-size: 28px;
+    margin: 0;
+    color: #0F1310;
+    letter-spacing: -0.02em;
+  }
+  .eatit-loading p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #6B7169;
+    margin-top: 12px;
+    letter-spacing: 0.05em;
+  }
+  .eatit-loading-bar {
+    width: 200px;
+    height: 2px;
+    background: rgba(0,0,0,0.06);
+    border-radius: 2px;
+    margin: 24px auto 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .eatit-loading-bar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #1F6B3A;
+    animation: load 1.4s ease-in-out infinite;
+    transform-origin: left;
+  }
+  @keyframes load {
+    0% { transform: scaleX(0); }
+    50% { transform: scaleX(1); transform-origin: left; }
+    51% { transform-origin: right; }
+    100% { transform: scaleX(0); transform-origin: right; }
+  }
+
+  /* 顶部回到作品集的悬浮按钮 */
+  .back-to-portfolio {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 100;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: rgba(15, 19, 16, 0.92);
+    color: white;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all 200ms;
+  }
+  .back-to-portfolio:hover {
+    background: #0F1310;
+    transform: translateY(-1px);
+  }
+  .back-to-portfolio svg {
+    width: 12px;
+    height: 12px;
+  }
+</style>
+</head>
+<body>
+
+<!-- 返回作品集按钮 -->
+<a href="/" class="back-to-portfolio">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="19" y1="12" x2="5" y2="12"/>
+    <polyline points="12 19 5 12 12 5"/>
+  </svg>
+  <span>返回作品集</span>
+</a>
+
+<!-- 加载态 -->
+<div class="eatit-loading" id="eatit-loading">
+  <div class="eatit-loading-inner">
+    <div class="eatit-loading-mark">e</div>
+    <h1>Eatit 正在启动</h1>
+    <p>COMPILING JSX MODULES...</p>
+    <div class="eatit-loading-bar"></div>
+  </div>
+</div>
+
+<div id="root"></div>
+
+<!-- 用 esm.sh 替代 unpkg.com (esm.sh 自带 CORS headers, 兼容性更强) -->
+<script src="vendor/react.min.js"></script>
+<script src="vendor/react-dom.min.js"></script>
+<script src="vendor/babel.min.js"></script>
+
+<script type="text/babel" src="icons.jsx"></script>
+<script type="text/babel" src="shell.jsx"></script>
+<script type="text/babel" src="page-upload.jsx"></script>
+<script type="text/babel" src="page-config.jsx"></script>
+<script type="text/babel" src="page-live.jsx"></script>
+<script type="text/babel" src="page-history.jsx"></script>
+<script type="text/babel" src="page-report.jsx"></script>
+
+<script type="text/babel">
+function App() {
+  const [page, setPage] = React.useState(() => {
+    try { return localStorage.getItem('eatit-page') || 'upload'; } catch { return 'upload'; }
+  });
+  React.useEffect(() => {
+    try { localStorage.setItem('eatit-page', page); } catch {}
+  }, [page]);
+  const goTo = (p) => { setPage(p); window.scrollTo(0, 0); };
+
+  const PageEl = {
+    upload: UploadPage,
+    config: ConfigPage,
+    live: LivePage,
+    history: HistoryPage,
+    report: ReportPage,
+  }[page];
+
+  return (
+    <div className="app" data-screen-label={pageLabel(page)}>
+      <Sidebar page={page} setPage={goTo}/>
+      <main className="main">
+        <PageEl goTo={goTo}/>
+      </main>
+    </div>
+  );
+}
+
+function pageLabel(p) {
+  return {
+    upload: '01 上传与解析',
+    config: '02 面试配置',
+    live: '03 实时面试',
+    history: '04 面试记录',
+    report: '05 评估报告',
+  }[p] || p;
+}
+
+// 直接渲染 — Babel 会自动按顺序编译 type=text/babel 的脚本
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+
+// 渲染后立即隐藏加载态
+requestAnimationFrame(() => {
+  const loader = document.getElementById('eatit-loading');
+  if (loader) {
+    loader.classList.add('fade');
+    setTimeout(() => loader.remove(), 400);
+  }
+});
+</script>
+</body>
+</html>

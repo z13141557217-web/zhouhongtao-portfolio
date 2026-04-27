@@ -1,0 +1,20 @@
+{
+  "name": "zhouhongtao-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "周鸿涛 — AI 产品经理作品集网站 · Astro + 深色科技未来派设计",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^6.1.9"
+  },
+  "engines": {
+    "node": ">=18.17.1"
+  }
+}
