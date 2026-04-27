@@ -2,6 +2,8 @@
 // 顶部导航栏
 ---
 
+<a href="#main" class="skip-link">跳到主内容</a>
+
 <nav class="nav-root" id="nav-root">
   <div class="nav-inner">
     <a href="#top" class="nav-brand">
@@ -13,6 +15,7 @@
     <div class="nav-links">
       <a href="#about">关于</a>
       <a href="#projects">项目</a>
+      <a href="#independent">独立产品</a>
       <a href="#methodology">方法论</a>
       <a href="#contact">联系</a>
     </div>
@@ -21,10 +24,71 @@
       <span>开始对话</span>
       <span class="btn-arrow">→</span>
     </a>
+
+    <button
+      class="nav-toggle"
+      id="nav-toggle"
+      aria-label="打开菜单"
+      aria-expanded="false"
+      aria-controls="nav-mobile"
+    >
+      <span class="toggle-bar"></span>
+      <span class="toggle-bar"></span>
+      <span class="toggle-bar"></span>
+    </button>
+  </div>
+
+  <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
+    <div class="nav-mobile-inner">
+      <a href="#about" class="nav-mobile-link" data-mobile-link>
+        <span class="mono nav-mobile-num">01</span>
+        <span>关于</span>
+      </a>
+      <a href="#projects" class="nav-mobile-link" data-mobile-link>
+        <span class="mono nav-mobile-num">02</span>
+        <span>项目</span>
+      </a>
+      <a href="#independent" class="nav-mobile-link" data-mobile-link>
+        <span class="mono nav-mobile-num">03</span>
+        <span>独立产品</span>
+      </a>
+      <a href="#methodology" class="nav-mobile-link" data-mobile-link>
+        <span class="mono nav-mobile-num">04</span>
+        <span>方法论</span>
+      </a>
+      <a href="#contact" class="nav-mobile-link" data-mobile-link>
+        <span class="mono nav-mobile-num">05</span>
+        <span>联系</span>
+      </a>
+      <a href="#contact" class="btn btn-primary nav-mobile-cta" data-mobile-link>
+        <span>开始对话</span>
+        <span class="btn-arrow">→</span>
+      </a>
+    </div>
   </div>
 </nav>
 
 <style>
+  .skip-link {
+    position: absolute;
+    left: 16px;
+    top: -48px;
+    z-index: 100;
+    padding: 8px 14px;
+    background: var(--accent-cyan);
+    color: var(--bg-deepest);
+    font-family: var(--f-body);
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: var(--r-sm);
+    transition: top 200ms;
+  }
+  .skip-link:focus {
+    top: 12px;
+    outline: 2px solid var(--ink-100);
+    outline-offset: 2px;
+  }
+
   .nav-root {
     position: fixed;
     top: 0;
@@ -35,7 +99,8 @@
     padding: 16px 0;
   }
 
-  .nav-root.scrolled {
+  .nav-root.scrolled,
+  .nav-root.menu-open {
     background: rgba(10, 14, 26, 0.72);
     backdrop-filter: blur(20px) saturate(160%);
     -webkit-backdrop-filter: blur(20px) saturate(160%);
@@ -93,7 +158,7 @@
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 28px;
   }
 
   .nav-links a {
@@ -113,16 +178,121 @@
     font-size: 13px;
   }
 
+  /* 汉堡按钮 */
+  .nav-toggle {
+    display: none;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+    cursor: pointer;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    transition: border-color 200ms;
+  }
+
+  .nav-toggle:hover {
+    border-color: var(--line-accent);
+  }
+
+  .toggle-bar {
+    width: 18px;
+    height: 1.5px;
+    background: var(--ink-100);
+    border-radius: 1px;
+    transition: transform 250ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                opacity 200ms;
+  }
+
+  .nav-toggle[aria-expanded="true"] .toggle-bar:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+  .nav-toggle[aria-expanded="true"] .toggle-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle[aria-expanded="true"] .toggle-bar:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  /* 移动端滑下面板 */
+  .nav-mobile {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 0;
+    overflow: hidden;
+    background: rgba(10, 14, 26, 0.92);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border-bottom: 1px solid var(--line);
+    transition: max-height 350ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .nav-root.menu-open .nav-mobile {
+    max-height: 480px;
+  }
+
+  .nav-mobile-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 8px var(--container-pad) 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .nav-mobile-link {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 14px 4px;
+    font-family: var(--f-body);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink-100);
+    border-bottom: 1px solid var(--line);
+    text-decoration: none;
+    transition: padding-left 200ms, color 200ms;
+  }
+
+  .nav-mobile-link:hover {
+    padding-left: 8px;
+    color: var(--accent-cyan);
+  }
+
+  .nav-mobile-num {
+    font-size: 11px;
+    color: var(--accent-cyan);
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .nav-mobile-cta {
+    margin-top: 16px;
+    justify-content: center;
+    padding: 14px 22px;
+    font-size: 14px;
+  }
+
   @media (max-width: 768px) {
     .nav-links { display: none; }
-    .nav-cta { padding: 8px 14px; font-size: 12px; }
+    .nav-cta { display: none; }
     .brand-sub { display: none; }
+    .nav-toggle { display: flex; }
   }
 </style>
 
 <script>
   // 滚动时显示玻璃态背景
   const nav = document.getElementById('nav-root');
+  const toggle = document.getElementById('nav-toggle');
+  const mobile = document.getElementById('nav-mobile');
+
   if (nav) {
     const onScroll = () => {
       if (window.scrollY > 32) nav.classList.add('scrolled');
@@ -130,5 +300,30 @@
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+  }
+
+  // 汉堡菜单开关
+  if (toggle && nav && mobile) {
+    const setOpen = (open: boolean) => {
+      nav.classList.toggle('menu-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? '关闭菜单' : '打开菜单');
+      mobile.setAttribute('aria-hidden', String(!open));
+    };
+
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      setOpen(!isOpen);
+    });
+
+    document.querySelectorAll<HTMLAnchorElement>('[data-mobile-link]').forEach(link => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+      }
+    });
   }
 </script>
