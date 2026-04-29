@@ -6,28 +6,21 @@
   <!-- 装饰: 网格背景 -->
   <div class="hero-grid" aria-hidden="true"></div>
 
-  <!-- 装饰: 浮动几何 -->
-  <div class="hero-orbit" aria-hidden="true">
-    <div class="orbit orbit-1"></div>
-    <div class="orbit orbit-2"></div>
-    <div class="orbit orbit-3"></div>
-  </div>
-
   <div class="container hero-content">
     <div class="hero-meta reveal" style="animation-delay: 100ms;">
       <span class="status-dot"></span>
-      <span class="mono">Available · Shenzhen / Remote · 2026</span>
+      <span class="mono">Available · AI Product / Agent · 2026</span>
     </div>
 
     <h1 class="hero-title reveal" style="animation-delay: 200ms;">
-      把<em>大模型能力</em><br/>
-      翻译成<em>业务可用</em>的<br/>
-      <span class="title-accent">产品体验。</span>
+      让<em>模型能力</em><br/>
+      跑进<span class="title-accent">真实业务</span>
     </h1>
 
     <p class="hero-sub reveal" style="animation-delay: 400ms;">
-      4 年 AI 产品经验，我更像是业务与模型之间的翻译者。
-      <span class="muted">把模糊需求拆成可评测、可迭代、可上线的产品能力，再用数据闭环验证它是否真的解决问题。</span>
+      4 年产品经验、近 3 年 AI 产品实践，跨过<strong class="text-strong">企业 B 端 Multi-Agent</strong>、
+      <strong class="text-strong">端侧 AI 软硬一体</strong>、<strong class="text-strong">C 端电商策略</strong>三类场景。
+      <span class="muted">同一套方法论——需求拆解、Eval 体系、Badcase 闭环——也在自研产品 Eatit 与长文工具上完整复用。</span>
     </p>
 
     <div class="hero-actions reveal" style="animation-delay: 600ms;">
@@ -35,7 +28,7 @@
         <span>查看项目</span>
         <span class="btn-arrow">↓</span>
       </a>
-      <a href="/eatit-demo/" target="_blank" class="btn">
+      <a href="/eatit-demo/index.html" target="_blank" class="btn">
         <span class="live-dot"></span>
         <span>体验 Eatit Demo</span>
         <span class="btn-arrow">↗</span>
@@ -45,22 +38,22 @@
     <!-- 横向数据条 -->
     <div class="hero-stats reveal" style="animation-delay: 800ms;">
       <div class="stat">
-        <span class="stat-num">70<small>%+</small></span>
-        <span class="stat-label">TILTA 首稿可用率 · 40→70</span>
+        <span class="stat-num"><span class="stat-from">40</span><span class="stat-arrow">→</span>70<small>%+</small></span>
+        <span class="stat-label">TILTA 首稿可用率 · 3 轮迭代</span>
       </div>
       <div class="stat-div"></div>
       <div class="stat">
-        <span class="stat-num">92<small>%+</small></span>
+        <span class="stat-num"><span data-countup>92</span><small>%+</small></span>
         <span class="stat-label">伊赛尔 首次找星成功率</span>
       </div>
       <div class="stat-div"></div>
       <div class="stat">
-        <span class="stat-num">1.8</span>
-        <span class="stat-label">PDD 综合 ROI · 1.2→1.8</span>
+        <span class="stat-num"><span class="stat-from">周</span><span class="stat-arrow">→</span>天</span>
+        <span class="stat-label">PDD Copilot 策略迭代周期</span>
       </div>
       <div class="stat-div"></div>
       <div class="stat">
-        <span class="stat-num">+35<small>%</small></span>
+        <span class="stat-num"><span data-countup>+35</span><small>%</small></span>
         <span class="stat-label">伊赛尔 单季营收环比</span>
       </div>
     </div>
@@ -98,52 +91,6 @@
     pointer-events: none;
   }
 
-  /* 浮动几何装饰 */
-  .hero-orbit {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-  .orbit {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.45;
-    animation: floatOrbit 18s ease-in-out infinite;
-  }
-  .orbit-1 {
-    width: 320px;
-    height: 320px;
-    background: var(--accent-cyan);
-    top: 10%;
-    right: -8%;
-    animation-delay: 0s;
-  }
-  .orbit-2 {
-    width: 240px;
-    height: 240px;
-    background: var(--accent-violet);
-    bottom: 15%;
-    left: -6%;
-    animation-delay: -6s;
-    opacity: 0.3;
-  }
-  .orbit-3 {
-    width: 180px;
-    height: 180px;
-    background: var(--accent-mint);
-    top: 55%;
-    right: 25%;
-    animation-delay: -12s;
-    opacity: 0.18;
-  }
-
-  @keyframes floatOrbit {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(30px, -30px) scale(1.05); }
-    66% { transform: translate(-30px, 20px) scale(0.95); }
-  }
-
   .hero-content {
     position: relative;
     z-index: 2;
@@ -176,29 +123,29 @@
 
   .hero-title {
     font-family: var(--f-display);
-    font-weight: 400;
-    font-size: clamp(40px, 8vw, 96px);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
+    font-weight: 500;
+    font-size: clamp(42px, 6.5vw, 76px);
+    line-height: 1.16;
+    letter-spacing: 0;
     color: var(--ink-100);
     margin-bottom: 36px;
-    max-width: 18ch;
+    max-width: 14ch;
+    text-wrap: balance;
   }
 
   .hero-title em {
-    font-style: italic;
-    background: var(--grad-cyan-violet);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 400;
+    font-style: normal;
+    color: var(--accent-cyan);
+    font-weight: 600;
   }
 
   .title-accent {
-    font-style: italic;
-    color: var(--accent-cyan);
+    font-style: normal;
+    color: var(--accent-mint);
+    font-weight: 600;
     position: relative;
     display: inline-block;
+    padding-bottom: 0.08em;
   }
 
   .title-accent::after {
@@ -256,16 +203,33 @@
   }
 
   .stat .stat-num {
-    font-size: clamp(34px, 4.5vw, 56px);
+    font-size: clamp(30px, 3.8vw, 48px);
     display: flex;
     align-items: baseline;
     gap: 2px;
+    line-height: 1.08;
   }
 
   .stat .stat-num small {
     font-size: 0.45em;
     font-style: normal;
     margin-left: 2px;
+  }
+
+  .stat-from {
+    color: var(--ink-500);
+    -webkit-text-fill-color: var(--ink-500);
+    font-size: 0.6em;
+    margin-right: 6px;
+    font-weight: 500;
+  }
+
+  .stat-arrow {
+    color: var(--ink-500);
+    -webkit-text-fill-color: var(--ink-500);
+    font-size: 0.55em;
+    margin: 0 4px;
+    font-family: var(--f-mono);
   }
 
   .stat-label {
@@ -316,7 +280,9 @@
     .hero-stats { gap: 16px 24px; }
     .stat-div { display: none; }
     .stat { min-width: calc(50% - 12px); }
-    .scroll-hint { display: none; }
-    .orbit-3 { display: none; }
+    .scroll-hint {
+      bottom: 16px;
+      transform: translateX(-50%) scale(0.85);
+    }
   }
 </style>

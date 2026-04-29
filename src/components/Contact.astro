@@ -10,9 +10,8 @@
     <div class="contact-head">
       <span class="eyebrow">05 — Get in touch</span>
       <h2 class="contact-title">
-        如果你也在做<br/>
-        <em class="nowrap">有趣的 AI 产品，</em><br/>
-        <span class="contact-title-accent">让我们聊聊。</span>
+        如果你也在做 <em>AI 产品</em>，<br/>
+        <span class="contact-title-accent">我们可以聊聊</span>
       </h2>
       <p class="body-text-lg muted contact-sub">
         无论是企业级 Agent 落地、AI Native 产品 0-1，
@@ -22,45 +21,65 @@
 
     <div class="contact-grid">
       <!-- 邮箱卡 -->
-      <a href="mailto:h13141557217@petalmail.com" class="contact-card">
+      <a href="mailto:h13141557217@petalmail.com" class="contact-card cc-email">
         <div class="cc-head">
           <span class="cc-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="5" width="18" height="14" rx="2"/>
               <path d="m3 7 9 6 9-6"/>
             </svg>
           </span>
-          <span class="cc-label mono">PRIMARY · 优先</span>
+          <span class="cc-label mono">EMAIL</span>
         </div>
         <div class="cc-mid">
           <h3 class="cc-method">邮箱</h3>
           <p class="cc-value">h13141557217@petalmail.com</p>
         </div>
         <div class="cc-foot">
-          <span class="muted">点击直接发送邮件</span>
+          <span class="muted">点击直接发送</span>
+          <span class="cc-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 电话卡 -->
+      <a href="tel:+8618928188804" class="contact-card cc-phone">
+        <div class="cc-head">
+          <span class="cc-icon cc-icon-phone">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </span>
+          <span class="cc-label mono">PHONE</span>
+        </div>
+        <div class="cc-mid">
+          <h3 class="cc-method">电话</h3>
+          <p class="cc-value cc-value-mono">189-2818-8804</p>
+        </div>
+        <div class="cc-foot">
+          <span class="muted">点击直接拨打</span>
           <span class="cc-arrow">→</span>
         </div>
       </a>
 
       <!-- 微信卡 -->
-      <div class="contact-card contact-card-wx" id="wx-card">
+      <div class="contact-card cc-wechat" id="wx-card">
         <div class="cc-head">
           <span class="cc-icon cc-icon-wx">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M9 9h.01"/>
               <path d="M15 9h.01"/>
               <path d="M9 12c-3 0-5 2-5 4.5 0 1 .5 2 1.5 2.5l-.5 2 2-1c.5.5 1.5 1 3 1s3-.5 4-1.5"/>
               <path d="M15 8c4 0 6 2.5 6 5.5 0 1.5-.5 3-2 4l.5 2-2-1c-1 .5-2 .5-3 .5"/>
             </svg>
           </span>
-          <span class="cc-label mono">DIRECT · 快速</span>
+          <span class="cc-label mono">WECHAT</span>
         </div>
         <div class="cc-mid">
           <h3 class="cc-method">微信</h3>
-          <p class="cc-value">手机号即微信号<br/><span class="mono cc-wx-num">131-4155-7217</span></p>
+          <p class="cc-value cc-value-mono">ZHT7217</p>
         </div>
         <div class="cc-foot">
-          <button class="cc-copy" id="copy-wx" data-copy="13141557217">
+          <button class="cc-copy" id="copy-wx" data-copy="ZHT7217" type="button">
             <span>复制微信号</span>
             <span class="cc-arrow">⌘</span>
           </button>
@@ -72,8 +91,8 @@
     <div class="contact-note">
       <p class="muted">
         <span class="accent">注：</span>
-        添加微信请备注「岗位 + 公司」，邮件请简述合作或岗位信息，
-        通常我会在 <strong class="text-strong">12 小时内</strong>响应。
+        添加微信请备注「岗位 + 公司」，邮件请简述合作或岗位信息。
+        <strong class="text-strong">通常我会在 12 小时内响应。</strong>
       </p>
     </div>
   </div>
@@ -81,7 +100,7 @@
   <!-- 简历下载 -->
   <div class="container resume-download">
     <span class="muted mono">— 你也可以下载我的简历 PDF</span>
-    <a href="/resume.pdf" target="_blank" class="btn btn-primary resume-btn">
+    <a href="/resume.pdf" download="周鸿涛-AI产品经理-2026.pdf" class="btn btn-primary resume-btn">
       <span>下载简历 PDF</span>
       <span class="btn-arrow">↓</span>
     </a>
@@ -147,22 +166,20 @@
 
   .contact-title {
     font-family: var(--f-display);
-    font-size: clamp(36px, 6vw, 72px);
-    font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: -0.025em;
+    font-size: clamp(34px, 4.8vw, 56px);
+    font-weight: 500;
+    line-height: 1.16;
+    letter-spacing: 0;
     color: var(--ink-100);
     margin-top: 24px;
     margin-bottom: 24px;
+    text-wrap: balance;
   }
 
   .contact-title em {
-    font-style: italic;
-    background: var(--grad-cyan-violet);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 400;
+    font-style: normal;
+    color: var(--accent-cyan);
+    font-weight: 600;
   }
 
   .nowrap {
@@ -170,8 +187,9 @@
   }
 
   .contact-title-accent {
-    font-style: italic;
+    font-style: normal;
     color: var(--accent-mint);
+    font-weight: 600;
   }
 
   .contact-sub {
@@ -182,16 +200,16 @@
   /* 联系卡片 */
   .contact-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
     margin-bottom: 40px;
   }
 
   .contact-card {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    padding: 32px;
+    gap: 18px;
+    padding: 24px;
     border-radius: var(--r-lg);
     background: linear-gradient(135deg, var(--bg-elev-1) 0%, var(--bg-elev-2) 100%);
     border: 1px solid var(--line);
@@ -217,16 +235,11 @@
     pointer-events: none;
   }
 
-  .contact-card-wx::before {
-    background: radial-gradient(circle, var(--accent-mint-soft), transparent 70%);
-  }
-
   .contact-card:hover {
     transform: translateY(-3px);
     border-color: var(--line-accent);
   }
   .contact-card:hover::before { opacity: 1; }
-  .contact-card-wx:hover { border-color: rgba(94, 255, 196, 0.3); }
 
   .cc-head {
     display: flex;
@@ -235,9 +248,9 @@
   }
 
   .cc-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
     background: var(--accent-cyan-soft);
     color: var(--accent-cyan);
     display: grid;
@@ -245,6 +258,11 @@
   }
 
   .cc-icon-wx {
+    background: var(--accent-mint-soft);
+    color: var(--accent-mint);
+  }
+
+  .cc-icon-phone {
     background: var(--accent-mint-soft);
     color: var(--accent-mint);
   }
@@ -272,19 +290,21 @@
   }
 
   .cc-value {
-    font-family: var(--f-display);
+    font-family: var(--f-body);
     font-size: clamp(16px, 1.8vw, 22px);
-    font-style: italic;
+    font-style: normal;
     color: var(--ink-100);
     line-height: 1.3;
     overflow-wrap: anywhere;
     word-break: normal;
   }
 
-  .cc-wx-num {
-    font-style: normal;
-    font-size: 0.75em;
-    color: var(--accent-mint);
+  .cc-value-mono {
+    font-family: var(--f-mono);
+    font-size: clamp(15px, 1.5vw, 18px);
+    letter-spacing: 0.02em;
+    font-weight: 500;
+    color: var(--ink-100);
   }
 
   .cc-foot {
@@ -322,6 +342,51 @@
 
   .cc-copy.copied {
     color: var(--accent-mint);
+  }
+
+  .cc-phone:hover { border-color: rgba(94, 255, 196, 0.3); }
+  .cc-wechat:hover { border-color: rgba(183, 148, 255, 0.3); }
+
+  .cc-phone::before {
+    background: radial-gradient(circle, var(--accent-mint-soft), transparent 70%);
+  }
+
+  .cc-wechat::before {
+    background: radial-gradient(circle, var(--accent-violet-soft), transparent 70%);
+  }
+
+  .cc-wechat .cc-icon {
+    background: var(--accent-violet-soft);
+    color: var(--accent-violet);
+  }
+
+  .cc-wechat .cc-copy {
+    color: var(--accent-violet);
+  }
+
+  .cc-wechat .cc-copy.copied {
+    color: var(--accent-mint);
+  }
+
+  .cc-copy.copied {
+    color: var(--accent-mint);
+    background: var(--accent-mint-soft);
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin: -4px -10px;
+  }
+
+  .cc-copy.copied::before {
+    content: '✓';
+    display: inline-block;
+    margin-right: 4px;
+    animation: copiedPop 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes copiedPop {
+    0% { transform: scale(0); opacity: 0; }
+    60% { transform: scale(1.3); opacity: 1; }
+    100% { transform: scale(1); }
   }
 
   /* 备注 */
@@ -397,35 +462,54 @@
     color: #6b7088;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 1024px) {
     .contact-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 12px; }
     .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
     .resume-download { flex-direction: column; gap: 12px; }
   }
 </style>
 
 <script>
-  // 复制微信号
+  async function copyText(text: string): Promise<boolean> {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px;';
+      document.body.appendChild(ta);
+      ta.select();
+      let ok = false;
+      try {
+        ok = document.execCommand('copy');
+      } catch {}
+      document.body.removeChild(ta);
+      return ok;
+    }
+  }
+
   const copyBtn = document.getElementById('copy-wx');
   if (copyBtn) {
     copyBtn.addEventListener('click', async (e) => {
       e.stopPropagation();
-      const text = (copyBtn as HTMLElement).dataset.copy || '';
-      try {
-        await navigator.clipboard.writeText(text);
-        const span = copyBtn.querySelector('span');
-        if (span) {
-          const original = span.textContent;
-          span.textContent = '✓ 已复制到剪贴板';
-          copyBtn.classList.add('copied');
-          setTimeout(() => {
-            if (span && original) span.textContent = original;
-            copyBtn.classList.remove('copied');
-          }, 2000);
-        }
-      } catch (err) {
-        console.error('Copy failed:', err);
-      }
+      e.preventDefault();
+      const text = (copyBtn as HTMLElement).dataset.copy ?? '';
+      if (!text) return;
+      const ok = await copyText(text);
+      const span = copyBtn.querySelector('span');
+      if (!span) return;
+      const original = span.textContent;
+      span.textContent = ok ? '✓ 已复制' : '复制失败，请手动';
+      copyBtn.classList.add('copied');
+      setTimeout(() => {
+        if (span && original) span.textContent = original;
+        copyBtn.classList.remove('copied');
+      }, 2000);
     });
   }
 </script>

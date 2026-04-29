@@ -1,4 +1,13 @@
 ---
+import '@fontsource/bricolage-grotesque/400.css';
+import '@fontsource/bricolage-grotesque/500.css';
+import '@fontsource/bricolage-grotesque/600.css';
+import '@fontsource/instrument-serif/400.css';
+import '@fontsource/instrument-serif/400-italic.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fontsource/jetbrains-mono/600.css';
+
 export interface Props {
   title?: string;
   description?: string;
@@ -17,21 +26,31 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <title>{title}</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600&display=swap"
-    />
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content={new URL('/og-cover.png', Astro.site ?? 'https://example.com').toString()} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="zh_CN" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL('/og-cover.png', Astro.site ?? 'https://example.com').toString()} />
   </head>
   <body>
     <slot />
+
+    <script>
+      import { initCountUp } from '../utils/countUp';
+
+      document.addEventListener('DOMContentLoaded', () => initCountUp('[data-countup]'));
+    </script>
 
     <style is:global>
       :root {
@@ -67,8 +86,9 @@ const {
         --grad-mint-cyan: linear-gradient(135deg, #5effc4 0%, #00e5ff 100%);
         --grad-text-glow: linear-gradient(180deg, #fafbff 0%, #9ca0b8 100%);
 
-        --f-display: 'Instrument Serif', 'Noto Serif SC', Georgia, serif;
-        --f-body: 'Bricolage Grotesque', 'Noto Sans SC', -apple-system, sans-serif;
+        --f-display: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+        --f-serif: 'Instrument Serif', Georgia, 'Songti SC', 'STSong', serif;
+        --f-body: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
         --f-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
 
         --r-sm: 6px;
@@ -82,13 +102,25 @@ const {
         --container-max: 1240px;
         --container-narrow: 880px;
         --container-pad: clamp(20px, 4vw, 48px);
+
+        --s-1: 4px;
+        --s-2: 8px;
+        --s-3: 12px;
+        --s-4: 16px;
+        --s-5: 24px;
+        --s-6: 32px;
+        --s-7: 48px;
+        --s-8: 64px;
+        --s-9: 80px;
+        --s-10: 120px;
       }
 
       * { box-sizing: border-box; margin: 0; padding: 0; }
 
-      html {
-        scroll-behavior: smooth;
-        -webkit-text-size-adjust: 100%;
+      html { -webkit-text-size-adjust: 100%; }
+
+      @media (prefers-reduced-motion: no-preference) {
+        html:focus-within { scroll-behavior: smooth; }
       }
 
       body {
@@ -113,17 +145,6 @@ const {
           radial-gradient(ellipse 70% 50% at 85% 100%, rgba(183, 148, 255, 0.06) 0%, transparent 50%);
         pointer-events: none;
         z-index: 0;
-      }
-
-      body::after {
-        content: '';
-        position: fixed;
-        inset: 0;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
-        opacity: 0.03;
-        pointer-events: none;
-        z-index: 1;
-        mix-blend-mode: overlay;
       }
 
       main { position: relative; z-index: 2; }
@@ -180,22 +201,26 @@ const {
 
       .display {
         font-family: var(--f-display);
-        font-weight: 400;
-        line-height: 1;
-        letter-spacing: -0.025em;
+        font-weight: 500;
+        line-height: 1.18;
+        letter-spacing: 0;
         color: var(--ink-100);
+        text-wrap: balance;
+        word-break: normal;
+        line-break: strict;
       }
 
-      .display-sm { font-size: clamp(32px, 5vw, 56px); }
-      .display-md { font-size: clamp(44px, 7vw, 84px); }
-      .display-lg { font-size: clamp(56px, 11vw, 144px); }
+      .display-sm { font-size: clamp(28px, 4vw, 42px); }
+      .display-md { font-size: clamp(34px, 4.8vw, 56px); }
+      .display-lg { font-size: clamp(42px, 7vw, 76px); }
 
       .heading {
         font-family: var(--f-body);
         font-weight: 600;
-        letter-spacing: -0.015em;
+        letter-spacing: 0;
         color: var(--ink-100);
-        line-height: 1.2;
+        line-height: 1.28;
+        text-wrap: balance;
       }
 
       .heading-sm { font-size: 18px; }
@@ -222,14 +247,15 @@ const {
 
       .stat-num {
         font-family: var(--f-display);
-        font-size: clamp(48px, 7vw, 88px);
-        line-height: 1;
-        font-style: italic;
+        font-size: clamp(38px, 5vw, 64px);
+        line-height: 1.08;
+        font-style: normal;
         background: var(--grad-mint-cyan);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
-        letter-spacing: -0.03em;
+        letter-spacing: 0;
+        padding-bottom: 0.08em;
       }
 
       .btn {
@@ -337,12 +363,24 @@ const {
         animation: fadeUp 800ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
       }
 
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          animation-delay: 0ms !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
       @media (max-width: 768px) {
         section { padding: 64px 0; }
       }
 
       @media print {
-        body::before, body::after { display: none; }
+        body::before { display: none; }
       }
     </style>
   </body>

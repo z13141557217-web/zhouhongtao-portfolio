@@ -4,7 +4,7 @@ const principles = [
   {
     num: '01',
     title: '判断需求是否值得用 AI 的三原则',
-    body: '高频、耗时、可标准化。主动排除"强主观判断"和"低频高价值但试错成本极高"的场景——前者幻觉风险大，后者 AI ROI 不划算。',
+    body: '高频、耗时、可标准化。主动排除"强主观判断"和"低频高价值但试错成本极高"的场景——前者幻觉风险大，后者产品化成本与验证成本都过高。',
     tags: ['场景判断', '需求评估'],
   },
   {
@@ -46,11 +46,11 @@ const principles = [
       <span class="eyebrow">04 — Methodology</span>
       <h2 class="display display-md meth-title">
         我做 AI 产品的<br/>
-        <em class="nowrap">六条工作原则。</em>
+        <em class="nowrap">6 条工作原则</em>
       </h2>
       <p class="body-text-lg muted">
         这些不是抽象概念，是我在 4 年 AI 产品实践里反复验证、踩坑、迭代后沉淀下来的<strong class="text-strong">可操作准则</strong>。
-        面试中如果你想深聊任何一条，我都能给出对应项目的真实案例。
+        每一条都对应一个真实项目的关键决策，下方点击对应标签可以直接跳转到出处。
       </p>
     </div>
 
@@ -83,12 +83,15 @@ const principles = [
   .meth-title {
     margin-top: 24px;
     margin-bottom: 24px;
+    max-width: 14ch;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .meth-title em {
-    font-style: italic;
+    font-style: normal;
     color: var(--accent-cyan);
-    font-weight: 400;
+    font-weight: 600;
   }
 
   .nowrap {
@@ -132,14 +135,14 @@ const principles = [
 
   .prin-num {
     font-family: var(--f-display);
-    font-size: 56px;
-    font-style: italic;
-    line-height: 1;
+    font-size: 44px;
+    font-style: normal;
+    line-height: 1.08;
     background: var(--grad-cyan-violet);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    letter-spacing: -0.04em;
+    letter-spacing: 0;
   }
 
   .prin-line {

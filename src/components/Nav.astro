@@ -1,26 +1,29 @@
 ---
 // 顶部导航栏
+const isHomePage = Astro.url.pathname === '/';
+const topHref = isHomePage ? '#top' : '/';
+const sectionHref = (id: string) => (isHomePage ? `#${id}` : `/#${id}`);
 ---
 
 <a href="#main" class="skip-link">跳到主内容</a>
 
 <nav class="nav-root" id="nav-root">
   <div class="nav-inner">
-    <a href="#top" class="nav-brand">
+    <a href={topHref} class="nav-brand">
       <span class="brand-mark">Z</span>
       <span class="brand-name">周鸿涛</span>
       <span class="brand-sub">/ AI PM</span>
     </a>
 
     <div class="nav-links">
-      <a href="#about">关于</a>
-      <a href="#projects">项目</a>
-      <a href="#independent">独立产品</a>
-      <a href="#methodology">方法论</a>
-      <a href="#contact">联系</a>
+      <a href={sectionHref('about')}>关于</a>
+      <a href={sectionHref('projects')}>项目</a>
+      <a href={sectionHref('independent')}>独立产品</a>
+      <a href={sectionHref('methodology')}>方法论</a>
+      <a href={sectionHref('contact')}>联系</a>
     </div>
 
-    <a href="#contact" class="btn btn-primary nav-cta">
+    <a href={sectionHref('contact')} class="btn btn-primary nav-cta">
       <span>开始对话</span>
       <span class="btn-arrow">→</span>
     </a>
@@ -40,27 +43,27 @@
 
   <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
     <div class="nav-mobile-inner">
-      <a href="#about" class="nav-mobile-link" data-mobile-link>
+      <a href={sectionHref('about')} class="nav-mobile-link" data-mobile-link>
         <span class="mono nav-mobile-num">01</span>
         <span>关于</span>
       </a>
-      <a href="#projects" class="nav-mobile-link" data-mobile-link>
+      <a href={sectionHref('projects')} class="nav-mobile-link" data-mobile-link>
         <span class="mono nav-mobile-num">02</span>
         <span>项目</span>
       </a>
-      <a href="#independent" class="nav-mobile-link" data-mobile-link>
+      <a href={sectionHref('independent')} class="nav-mobile-link" data-mobile-link>
         <span class="mono nav-mobile-num">03</span>
         <span>独立产品</span>
       </a>
-      <a href="#methodology" class="nav-mobile-link" data-mobile-link>
+      <a href={sectionHref('methodology')} class="nav-mobile-link" data-mobile-link>
         <span class="mono nav-mobile-num">04</span>
         <span>方法论</span>
       </a>
-      <a href="#contact" class="nav-mobile-link" data-mobile-link>
+      <a href={sectionHref('contact')} class="nav-mobile-link" data-mobile-link>
         <span class="mono nav-mobile-num">05</span>
         <span>联系</span>
       </a>
-      <a href="#contact" class="btn btn-primary nav-mobile-cta" data-mobile-link>
+      <a href={sectionHref('contact')} class="btn btn-primary nav-mobile-cta" data-mobile-link>
         <span>开始对话</span>
         <span class="btn-arrow">→</span>
       </a>
@@ -167,10 +170,27 @@
     color: var(--ink-400);
     transition: color 200ms;
     position: relative;
+    padding-bottom: 2px;
   }
 
   .nav-links a:hover {
     color: var(--ink-100);
+  }
+
+  .nav-links a.active,
+  .nav-mobile-link.active {
+    color: var(--ink-100);
+  }
+
+  .nav-links a.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 1px;
+    background: var(--accent-cyan);
+    box-shadow: 0 0 8px var(--accent-cyan-glow);
   }
 
   .nav-cta {
@@ -325,5 +345,29 @@
         setOpen(false);
       }
     });
+  }
+
+  const sections = document.querySelectorAll<HTMLElement>('main section[id]');
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('.nav-links a, .nav-mobile-link');
+
+  if (sections.length && navLinks.length) {
+    const setActive = (id: string) => {
+      navLinks.forEach((l) => {
+        const href = l.getAttribute('href') ?? '';
+        l.classList.toggle('active', href === `#${id}`);
+      });
+    };
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: '-30% 0px -55% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+
+    sections.forEach((s) => obs.observe(s));
   }
 </script>

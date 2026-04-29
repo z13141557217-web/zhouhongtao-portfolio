@@ -1,0 +1,316 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import { projectsWithDetail } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projectsWithDetail.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const detail = project.detail;
+---
+
+<Layout title={`${project.title} · 周鸿涛`} description={project.summary}>
+  <Nav />
+  <main id="main" class="proj-detail">
+    <article class="container-narrow">
+      <a href="/#projects" class="back-link mono">← 返回项目列表</a>
+
+      <header class="pd-head">
+        <div class="pd-meta">
+          <span class={`mono pd-period accent-${project.accent}`}>{project.period}</span>
+          <span class="pd-co">{project.company} · {project.role}</span>
+        </div>
+        <h1 class="display display-lg pd-title">{project.title}</h1>
+        <p class="body-text-lg pd-summary">{project.summary}</p>
+        <div class="pd-tags">
+          {project.tags.map((tag) => <span class="tag tag-accent">{tag}</span>)}
+        </div>
+      </header>
+
+      <section class="pd-section">
+        <span class="eyebrow">01 — Challenge</span>
+        <h2 class="heading heading-lg pd-h2">背景与挑战</h2>
+        <p class="body-text">{detail.challenge}</p>
+      </section>
+
+      <section class="pd-section">
+        <span class="eyebrow">02 — Key Decisions</span>
+        <h2 class="heading heading-lg pd-h2">关键决策</h2>
+        {detail.decisions.map((decision, idx) => (
+          <article class="pd-decision">
+            <div class="pd-dec-num mono">D{String(idx + 1).padStart(2, '0')}</div>
+            <h3 class="heading heading-md">{decision.title}</h3>
+            <p class="body-text">{decision.body}</p>
+            {decision.bullets && (
+              <ul class="pd-bullets">
+                {decision.bullets.map((bullet) => <li>{bullet}</li>)}
+              </ul>
+            )}
+            {decision.callout && <p class="pd-callout">{decision.callout}</p>}
+          </article>
+        ))}
+      </section>
+
+      <section class="pd-section">
+        <span class="eyebrow">03 — Eval & Quality</span>
+        <h2 class="heading heading-lg pd-h2">{detail.eval.title}</h2>
+        <p class="body-text">{detail.eval.body}</p>
+        {detail.eval.bullets && (
+          <ul class="pd-bullets">
+            {detail.eval.bullets.map((bullet) => <li>{bullet}</li>)}
+          </ul>
+        )}
+        {detail.eval.callout && <p class="pd-callout">{detail.eval.callout}</p>}
+      </section>
+
+      <section class="pd-section">
+        <span class="eyebrow">04 — Outcome</span>
+        <h2 class="heading heading-lg pd-h2">{detail.outcome.title}</h2>
+        <p class="body-text">{detail.outcome.body}</p>
+        <div class="pd-metrics">
+          {project.metrics.map((metric) => (
+            <div class="pd-metric">
+              <span class="stat-num" data-countup>{metric.value}</span>
+              <span class="metric-label mono">{metric.label}</span>
+            </div>
+          ))}
+        </div>
+        {detail.outcome.bullets && (
+          <ul class="pd-bullets">
+            {detail.outcome.bullets.map((bullet) => <li>{bullet}</li>)}
+          </ul>
+        )}
+      </section>
+
+      {detail.methodologyRefs.length > 0 && (
+        <section class="pd-section pd-meth-refs">
+          <span class="eyebrow">— Related Methodology</span>
+          <p class="muted">
+            本项目对应的方法论：
+            {detail.methodologyRefs.map((ref, idx) => (
+              <>
+                <a href="/#methodology" class="meth-ref">第 {ref} 条</a>{idx < detail.methodologyRefs.length - 1 ? '、' : ''}
+              </>
+            ))}
+          </p>
+        </section>
+      )}
+
+      <footer class="pd-foot">
+        <a href="/#projects" class="btn">← 看其他项目</a>
+        <a href="/#contact" class="btn btn-primary">想聊这个项目 →</a>
+      </footer>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .proj-detail {
+    padding-top: 120px;
+    padding-bottom: 80px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 32px;
+    font-size: 12px;
+    color: var(--ink-400);
+    transition: color 200ms ease;
+  }
+
+  .back-link:hover {
+    color: var(--accent-cyan);
+  }
+
+  .pd-head {
+    margin-bottom: 80px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .pd-meta {
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .pd-period {
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  .pd-period.accent-cyan {
+    color: var(--accent-cyan);
+  }
+
+  .pd-period.accent-mint {
+    color: var(--accent-mint);
+  }
+
+  .pd-period.accent-violet {
+    color: var(--accent-violet);
+  }
+
+  .pd-co {
+    font-size: 13px;
+    color: var(--ink-200);
+  }
+
+  .pd-title {
+    margin-bottom: 24px;
+    max-width: 20ch;
+  }
+
+  .pd-summary {
+    margin-bottom: 24px;
+    max-width: 64ch;
+  }
+
+  .pd-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .pd-section {
+    margin-bottom: 80px;
+  }
+
+  .pd-h2 {
+    margin-top: 16px;
+    margin-bottom: 24px;
+  }
+
+  .pd-decision {
+    margin-bottom: 56px;
+    padding-left: 24px;
+    border-left: 2px solid var(--line);
+  }
+
+  .pd-decision:last-child {
+    margin-bottom: 0;
+  }
+
+  .pd-dec-num {
+    font-size: 12px;
+    color: var(--accent-cyan);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  .pd-decision h3 {
+    margin-bottom: 12px;
+  }
+
+  .pd-decision p {
+    margin-bottom: 16px;
+  }
+
+  .pd-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 16px 0;
+  }
+
+  .pd-bullets li {
+    position: relative;
+    padding-left: 20px;
+    color: var(--ink-200);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .pd-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 8px;
+    height: 1px;
+    background: var(--accent-cyan);
+  }
+
+  .pd-callout {
+    margin: 20px 0 0;
+    padding: 16px 20px;
+    border-left: 2px solid var(--accent-cyan);
+    background: var(--accent-cyan-soft);
+    color: var(--ink-100);
+    font-size: 15px;
+    line-height: 1.7;
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+
+  .pd-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin: 32px 0;
+  }
+
+  .pd-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .pd-metric .stat-num {
+    font-size: clamp(28px, 3vw, 40px);
+  }
+
+  .pd-metric .metric-label {
+    font-size: 11px;
+    color: var(--ink-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .meth-ref {
+    color: var(--accent-cyan);
+    border-bottom: 1px dashed var(--line-accent);
+  }
+
+  .meth-ref:hover {
+    color: var(--accent-mint);
+  }
+
+  .pd-foot {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding-top: 48px;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 640px) {
+    .proj-detail {
+      padding-top: 104px;
+    }
+
+    .pd-metrics {
+      grid-template-columns: 1fr;
+    }
+
+    .pd-foot {
+      flex-direction: column;
+    }
+
+    .pd-foot .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
