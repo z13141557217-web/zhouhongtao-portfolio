@@ -11,11 +11,13 @@ import '@fontsource/jetbrains-mono/600.css';
 export interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
 const {
   title = '周鸿涛 — AI 产品经理 · Multi-Agent 落地实践',
   description = '4 年 AI 产品经验,专注大模型应用、Multi-Agent 架构与端侧 AI 落地。主导过 TILTA 企业级 IPD 工作流、伊赛尔端侧导星系统、拼多多 LLM Copilot,自研 Eatit AI 面试系统已上线 MVP。',
+  noindex = false,
 } = Astro.props;
 ---
 
@@ -25,6 +27,7 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -48,8 +51,12 @@ const {
 
     <script>
       import { initCountUp } from '../utils/countUp';
+      import { initPortfolioAnalytics } from '../utils/analyticsClient';
 
-      document.addEventListener('DOMContentLoaded', () => initCountUp('[data-countup]'));
+      document.addEventListener('DOMContentLoaded', () => {
+        initCountUp('[data-countup]');
+        initPortfolioAnalytics();
+      });
     </script>
 
     <style is:global>

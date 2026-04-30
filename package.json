@@ -13,9 +13,11 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/vercel": "^10.0.6",
     "@fontsource/bricolage-grotesque": "^5.2.10",
     "@fontsource/instrument-serif": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
+    "@upstash/redis": "^1.37.0",
     "astro": "^6.1.9"
   },
   "engines": {
